@@ -105,29 +105,34 @@ $(document).on("click","#saveUpdate",function () {
 $(document).on("click",".templatemo-delete-btn",function () {
     var goodsname = $(this).parents("tr").find("td:eq(1)").text();
     var goodsid = $(this).parents("tr").find("td:eq(0)").text();
-    swal({
-            title: "确定删除" + goodsname + "吗？",
-            type: "warning",
-            showCancelButton: true,
-            cancelButtonText:"取消",
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "确定删除！",
-            closeOnConfirm: false,
-        },
-        function () {
-            /*swal("删除！", "你的虚拟文件已经被删除。", "success");*/
-            $.ajax({
-                url: "/shop/admin/goods/delete/" + goodsid,
-                type: "DELETE",
-                success:function (result) {
-                    swal(result.msg, "","success");
-                    to_page('/shop',currentPage);
-                },
-                error:function () {
-                    to_page('/shop',currentPage);
-                }
+    var state = $(this).parents("tr").find("td:eq(6)").text();
+    if(state == "1") {
+        swal({
+                title: "确定下架" + goodsname + "吗？",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "取消",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定下架！",
+                closeOnConfirm: false,
+            },
+            function () {
+                /*swal("删除！", "你的虚拟文件已经被删除。", "success");*/
+                $.ajax({
+                    url: "/shop/admin/goods/delete/" + goodsid,
+                    type: "DELETE",
+                    success: function (result) {
+                        swal(result.msg, "", "success");
+                        to_page('/shop', currentPage);
+                    },
+                    error: function () {
+                        to_page('/shop', currentPage);
+                    }
+                });
             });
-        });
+    }else{
+        swal("请勿重复下架");
+    }
 });
 
 /*$(document).on("click",".templatemo-activity-btn",function () {
@@ -222,6 +227,8 @@ function build_goods_table(path,result) {
         var num = $("<td></td>").append(item.num);
         var detailcate = $("<td></td>").append(item.detailcate);
         var activityid = $("<td></td>").append(item.activityid);
+        var state = $("<td></td>").append(item.state);
+
 
         // var detailA = $('<a tabindex="0" class="btn btn-sm description" role="button" placement="top" data-toggle="popover" data-trigger="focus" title="描述" ></a>').append("描述");
         var detailBtn = $('<button type="button" class="description" data-container="body" data-toggle="popover" data-placement="top"></button>').append("描述");
@@ -231,7 +238,7 @@ function build_goods_table(path,result) {
         var detailA = $("<a></a>").addClass("templatemo-link").attr("href","/shop/detail?goodsid="+item.goodsid).append("详情");
 
         var editBtn = $("<button></button>").addClass("templatemo-edit-btn").append("编辑");
-        var deleteBtn = $("<button></button>").addClass("templatemo-delete-btn").append("删除");
+        var deleteBtn = $("<button></button>").addClass("templatemo-delete-btn").append("下架");
 
         var desTd = $("<td hidden></td>").append(detailBtn);
 
@@ -251,7 +258,7 @@ function build_goods_table(path,result) {
         var editTd = $("<td></td>").append(editBtn);
         var deleteTd = $("<td></td>").append(deleteBtn);
 
-        $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(detailcate).append(activityid).append(desTd).append(detailTd).append(editTd).append(deleteTd).append(actTd).appendTo("#goodsinfo tbody");
+        $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(detailcate).append(activityid).append(state).append(desTd).append(detailTd).append(editTd).append(deleteTd).append(actTd).appendTo("#goodsinfo tbody");
     })
 }
 

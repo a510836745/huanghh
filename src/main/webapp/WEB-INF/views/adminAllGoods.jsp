@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 文辉
-  Date: 2017/7/22
-  Time: 13:07
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -191,15 +184,16 @@
                     <table id="goodsinfo" class="table table-striped table-bordered templatemo-user-table">
                         <thead>
                         <tr>
-                            <td><a href="" class="white-text templatemo-sort-by">id<span class="caret"></span></a></td>
-                            <td><a href="" class="white-text templatemo-sort-by">商品名<span class="caret"></span></a></td>
-                            <td><a href="" class="white-text templatemo-sort-by">价格<span class="caret"></span></a></td>
-                            <td><a href="" class="white-text templatemo-sort-by">数量<span class="caret"></span></a></td>
-                            <td><a href="" class="white-text templatemo-sort-by">类别<span class="caret"></span></a></td>
-                            <td><a href="" class="white-text templatemo-sort-by">活动<span class="caret"></span></a></td>
+                            <td><a  class="white-text templatemo-sort-by">id<span class="caret"></span></a></td>
+                            <td><a  class="white-text templatemo-sort-by">商品名<span class="caret"></span></a></td>
+                            <td><a  class="white-text templatemo-sort-by">价格<span class="caret"></span></a></td>
+                            <td><a  class="white-text templatemo-sort-by">数量<span class="caret"></span></a></td>
+                            <td><a  class="white-text templatemo-sort-by">类别<span class="caret"></span></a></td>
+                            <td><a  class="white-text templatemo-sort-by">活动<span class="caret"></span></a></td>
+                            <td><a  class="white-text templatemo-sort-by">状态<span class="caret"></span></a></td>
                             <td>详情</td>
                             <td>编辑</td>
-                            <td>删除</td>
+                            <td>下架</td>
                             <td>活动</td>
                         </tr>
                         </thead>

@@ -43,9 +43,9 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public void deleteGoodsById(Integer goodsid) {
+    public void updateStateByGoodsId(Integer goodsid) {
 
-        goodsMapper.deleteByPrimaryKey(goodsid);
+        goodsMapper.updateStateByGoodsId(goodsid);
     }
 
     @Override

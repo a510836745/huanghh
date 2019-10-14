@@ -30,6 +30,16 @@ public class Goods {
 
     private Float newPrice;
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    private String state;
+
     public Integer getGoodsid() {
         return goodsid;
     }

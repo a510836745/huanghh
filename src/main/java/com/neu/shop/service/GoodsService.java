@@ -15,7 +15,7 @@ public interface GoodsService {
 
     public List<Goods> selectByExample(GoodsExample example);
 
-    public void deleteGoodsById(Integer goodsid);
+    public void updateStateByGoodsId(Integer goodsid);
 
     public void updateGoodsById(Goods goods);
 

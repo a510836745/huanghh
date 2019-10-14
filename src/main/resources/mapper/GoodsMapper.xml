@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    goodsId, goodsName, price, num, upTime, category, detailCate, activityId
+    goodsId, goodsName, price, num, upTime, category, detailCate, activityId, state
   </sql>
   <sql id="Blob_Column_List">
     description
@@ -105,11 +105,12 @@
     from goods
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
+      and state = '1'
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    limit 10
+    limit 6
   </select>
   <select id="selectByExample" parameterType="com.neu.shop.pojo.GoodsExample" resultMap="BaseResultMap">
     select
@@ -336,5 +337,9 @@
       detailCate = #{detailcate,jdbcType=VARCHAR},
       activityId = #{activityid,jdbcType=INTEGER}
     where goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateStateByGoodsId" parameterType="com.neu.shop.pojo.Goods">
+    update  goods
+    set state = '0' where goodsId = #{goodsid,jdbcType=INTEGER}
   </update>
 </mapper>

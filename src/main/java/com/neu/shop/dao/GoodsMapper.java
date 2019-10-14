@@ -34,5 +34,7 @@ public interface GoodsMapper {
 
     int updateByPrimaryKey(Goods record);
 
+    int updateStateByGoodsId(Integer goodsid);
+
     List<Goods> selectByExampleWithBLOBsLimit(GoodsExample digGoodsExample);
 }

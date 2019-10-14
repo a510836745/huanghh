@@ -107,15 +107,16 @@ public class CustomerController {
         UserExample userExample=new UserExample();
         User user,updateUser=new User();
         List<User> userList=new ArrayList<>();
-        Integer userid;
+
         user=(User)session.getAttribute("user");
-        userid= user.getUserid();
+        Integer userid= user.getUserid();
+        String username= user.getUsername();
         userExample.or().andUsernameEqualTo(name);
         userList=userService.selectByExample(userExample);
         if (userList.isEmpty())
         {
             updateUser.setUserid(userid);
-            updateUser.setUsername(name);
+            updateUser.setUsername(username);
             updateUser.setEmail(email);
             updateUser.setTelephone(telephone);
             userService.updateByPrimaryKeySelective(updateUser);

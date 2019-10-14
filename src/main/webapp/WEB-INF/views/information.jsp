@@ -81,7 +81,7 @@ limitations under the License
 </head>
 <body>
 
-<%--修改商品信息模态框--%>
+
 <!-- Modal -->
 <div class="modal fade" id="update-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -120,7 +120,7 @@ limitations under the License
     </div>
 </div>
 
-<%--修改商品信息模态框--%>
+
 <!-- Modal -->
 <div class="modal fade" id="update-Psw" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPsw">
     <div class="modal-dialog" role="document">
