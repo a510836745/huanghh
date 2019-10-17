@@ -193,7 +193,7 @@
                             <td><a  class="white-text templatemo-sort-by">状态<span class="caret"></span></a></td>
                             <td>详情</td>
                             <td>编辑</td>
-                            <td>下架</td>
+                            <td>上下架设置</td>
                             <td>活动</td>
                         </tr>
                         </thead>

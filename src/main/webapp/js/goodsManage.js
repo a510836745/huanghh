@@ -12,14 +12,6 @@ $(document).ready(function () {
 
 });
 
-/*$(document).ready(function () {
-    $(".templatemo-edit-btn").click(function () {
-        alert("asf");
-        $("#update-goods").modal({
-            backdrop:'static'
-        })
-    });
-});*/
 
 $(document).on("click",".description",function () {
     $(this).popover();
@@ -56,11 +48,6 @@ $(document).on("click","#saveUpdate",function () {
     var ucategory = $("#category").val();
     var udetailcate = $("#detailcate").val();
 
-    /*var option = {
-        url: '/shop/admin/goods/update/'+goodsid,
-        type:'post',
-    };
-    $("#update-goods").ajaxForm(option);*/
 
     $.ajax({
         url:"/shop/admin/goods/update/",
@@ -106,7 +93,8 @@ $(document).on("click",".templatemo-delete-btn",function () {
     var goodsname = $(this).parents("tr").find("td:eq(1)").text();
     var goodsid = $(this).parents("tr").find("td:eq(0)").text();
     var state = $(this).parents("tr").find("td:eq(6)").text();
-    if(state == "1") {
+    var btnState = "0";
+    if(state == "已上架" ) {
         swal({
                 title: "确定下架" + goodsname + "吗？",
                 type: "warning",
@@ -119,7 +107,7 @@ $(document).on("click",".templatemo-delete-btn",function () {
             function () {
                 /*swal("删除！", "你的虚拟文件已经被删除。", "success");*/
                 $.ajax({
-                    url: "/shop/admin/goods/delete/" + goodsid,
+                    url: "/shop/admin/goods/delete/" + goodsid + "/"+btnState,
                     type: "DELETE",
                     success: function (result) {
                         swal(result.msg, "", "success");
@@ -132,6 +120,39 @@ $(document).on("click",".templatemo-delete-btn",function () {
             });
     }else{
         swal("请勿重复下架");
+    }
+});
+$(document).on("click",".templatemo-up-btn",function () {
+    var goodsname = $(this).parents("tr").find("td:eq(1)").text();
+    var goodsid = $(this).parents("tr").find("td:eq(0)").text();
+    var state = $(this).parents("tr").find("td:eq(6)").text();
+    var btnState = "1";
+    if(state == "已下架") {
+        swal({
+                title: "确定上架" + goodsname + "吗？",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "取消",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定上架！",
+                closeOnConfirm: false,
+            },
+            function () {
+                /*swal("删除！", "你的虚拟文件已经被删除。", "success");*/
+                $.ajax({
+                    url: "/shop/admin/goods/delete/" + goodsid + "/"+btnState,
+                    type: "DELETE",
+                    success: function (result) {
+                        swal(result.msg, "", "success");
+                        to_page('/shop', currentPage);
+                    },
+                    error: function () {
+                        to_page('/shop', currentPage);
+                    }
+                });
+            });
+    }else{
+        swal("请勿重复上架");
     }
 });
 
@@ -227,7 +248,14 @@ function build_goods_table(path,result) {
         var num = $("<td></td>").append(item.num);
         var detailcate = $("<td></td>").append(item.detailcate);
         var activityid = $("<td></td>").append(item.activityid);
-        var state = $("<td></td>").append(item.state);
+
+        var state = null;
+            if(item.state==1){
+                state = $("<td></td>").append("已上架");
+            }
+            if(item.state==0){
+                state = $("<td></td>").append("已下架");
+            }
 
 
         // var detailA = $('<a tabindex="0" class="btn btn-sm description" role="button" placement="top" data-toggle="popover" data-trigger="focus" title="描述" ></a>').append("描述");
@@ -239,6 +267,7 @@ function build_goods_table(path,result) {
 
         var editBtn = $("<button></button>").addClass("templatemo-edit-btn").append("编辑");
         var deleteBtn = $("<button></button>").addClass("templatemo-delete-btn").append("下架");
+        var upBtn = $("<button></button>").addClass("templatemo-up-btn").append("上架");
 
         var desTd = $("<td hidden></td>").append(detailBtn);
 
@@ -256,9 +285,14 @@ function build_goods_table(path,result) {
 
         var detailTd = $("<td></td>").append(detailA);
         var editTd = $("<td></td>").append(editBtn);
-        var deleteTd = $("<td></td>").append(deleteBtn);
-
-        $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(detailcate).append(activityid).append(state).append(desTd).append(detailTd).append(editTd).append(deleteTd).append(actTd).appendTo("#goodsinfo tbody");
+        var setTd = null;
+        if(item.state == 1){
+            setTd = $("<td></td>").append(deleteBtn);
+        }else {
+            setTd = $("<td></td>").append(upBtn);
+        }
+        $("<td></td>").append();
+        $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(detailcate).append(activityid).append(state).append(desTd).append(detailTd).append(editTd).append(setTd).append(actTd).appendTo("#goodsinfo tbody");
     })
 }
 

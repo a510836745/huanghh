@@ -105,12 +105,17 @@ public class GoodsController {
     /*
     商品下架
      */
-    @RequestMapping(value = "/delete/{goodsid}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{goodsid}/{btnState}",method = RequestMethod.DELETE)
     @ResponseBody
-    public Msg deleteGoods(@PathVariable("goodsid")Integer goodsid) {
-        goodsService.updateStateByGoodsId(goodsid);
-        return Msg.success("下架成功!");
+    public Msg deleteGoods(@PathVariable("goodsid")Integer goodsid,@PathVariable("btnState")String btnState) {
+        goodsService.updateStateByGoodsId(goodsid,btnState);
+        if("0".equals(btnState)){
+            return Msg.success("下架成功!");
+        }else {
+            return Msg.success("上架成功");
+        }
     }
+
 
     @RequestMapping("/addGoodsSuccess")
     public String addGoods(Goods goods,

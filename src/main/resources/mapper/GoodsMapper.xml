@@ -340,6 +340,6 @@
   </update>
   <update id="updateStateByGoodsId" parameterType="com.neu.shop.pojo.Goods">
     update  goods
-    set state = '0' where goodsId = #{goodsid,jdbcType=INTEGER}
+    set state = #{btnState,jdbcType=VARCHAR} where goodsId = #{goodsid,jdbcType=INTEGER}
   </update>
 </mapper>

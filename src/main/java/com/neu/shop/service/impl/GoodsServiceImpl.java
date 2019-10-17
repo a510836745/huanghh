@@ -43,9 +43,9 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public void updateStateByGoodsId(Integer goodsid) {
+    public void updateStateByGoodsId(Integer goodsid,String btnState) {
 
-        goodsMapper.updateStateByGoodsId(goodsid);
+        goodsMapper.updateStateByGoodsId(goodsid,btnState);
     }
 
     @Override
