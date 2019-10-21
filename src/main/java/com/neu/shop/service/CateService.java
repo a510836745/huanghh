@@ -20,5 +20,5 @@ public interface CateService {
 
     public void updateByPrimaryKeySelective(Category category);
 
-    public void deleteByPrimaryKey(Integer cateid);
+    public void updateByPrimaryKey(Integer cateid,String btnState);
 }

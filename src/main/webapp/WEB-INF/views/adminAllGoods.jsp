@@ -197,65 +197,13 @@
                             <td>活动</td>
                         </tr>
                         </thead>
-                        <tbody>
-                        <%--<c:forEach items="${pageInfo.list}" var="goods" varStatus="num">
-                            <tr>
-                                <td>${goods.goodsid}</td>
-                                <td>${goods.goodsname}</td>
-                                <td>${goods.price}</td>
-                                <td>${goods.num}</td>
-                                <td>${goods.detailcate}</td>
-                                <td><a href="" class="templatemo-link">详情</a></td>
-                                <td><button href="" class="templatemo-edit-btn">编辑</button></td>
-                                <td><button href="" class="templatemo-delete-btn">删除</button></td>
-                            </tr>
-                        </c:forEach>--%>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
 
             <div class="pagination-wrap" id="page-div-nav">
-                <div class="page-info" id="page-info-area">
-                    <%--当前第${pageInfo.pageNum}页，总共${pageInfo.pages}页，总共${pageInfo.total}记录--%>
-                </div>
-                <%--<ul class="pagination">
-                    <li>
-                        <a href="${pageContext.request.contextPath}/admin/goods/show?page=1" aria-label="Next">
-                            <span aria-hidden="true">首页</span>
-                        </a>
-                    </li>
-
-                    <c:if test="${pageInfo.hasPreviousPage}">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pageNum - 1}" aria-label="Previous">
-                                <span aria-hidden="true"><i class="fa fa-backward"></i></span>
-                            </a>
-                        </li>
-                    </c:if>
-
-                    <c:forEach items="${pageInfo.navigatepageNums}" var="pageNums">
-                        <c:if test="${pageNums == pageInfo.pageNum}">
-                            <li class="active"><a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageNums}">${pageNums}</a></li>
-                        </c:if>
-                        <c:if test="${pageNums != pageInfo.pageNum}">
-                            <li><a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageNums}">${pageNums}</a></li>
-                        </c:if>
-                    </c:forEach>
-
-                    <c:if test="${pageInfo.hasNextPage}">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pageNum + 1}" aria-label="Next">
-                                <span aria-hidden="true"><i class="fa fa-forward"></i></span>
-                            </a>
-                        </li>
-                    </c:if>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pages}" aria-label="Next">
-                            <span aria-hidden="true">末页</span>
-                        </a>
-                    </li>
-                </ul>--%>
+                <div class="page-info" id="page-info-area"></div>
             </div>
         </div>
     </div>

@@ -44,7 +44,7 @@ public class CateServiceImpl implements CateService {
     }
 
     @Override
-    public void deleteByPrimaryKey(Integer cateid) {
-        categoryMapper.deleteByPrimaryKey(cateid);
+    public void updateByPrimaryKey(Integer cateid,String btnState) {
+        categoryMapper.updateByPrimaryKey(cateid,btnState);
     }
 }

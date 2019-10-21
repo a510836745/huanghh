@@ -5,6 +5,16 @@ public class Category {
 
     private String catename;
 
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public Integer getCateid() {
         return cateid;
     }

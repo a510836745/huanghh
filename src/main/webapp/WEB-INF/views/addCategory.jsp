@@ -75,9 +75,7 @@
     <jsp:include page="sidebar.jsp"></jsp:include>
     <!-- Main content -->
     <div class="templatemo-content col-1 light-gray-bg">
-        <jsp:include page="goodsNav.jsp"></jsp:include>
         <div class="templatemo-content-container">
-
             <div class="templatemo-content-widget white-bg">
                 <div class="templatemo-content-widget no-padding">
                     <div class="panel panel-default table-responsive">
@@ -85,16 +83,25 @@
                             <thead>
                             <tr>
                                 <td>分类名</td>
-                                <td >编辑</td>
-                                <td >删除</td>
+                                <td>类别状态</td>
+                                <td>上下架设置</td>
+                                <td>编辑</td>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${categoryList}" var="category">
+                                
                                 <tr>
-                                    <td><a href="" class="templatemo-link" cateId="${category.cateid}">${category.catename}</a></td>
+                                    <td id="cateName"><a class="templatemo-link" cateId="${category.cateid}" cateName="${category.catename}">${category.catename}</a></td>
+                                    <c:if test="${category.state == '1'}">
+                                        <td><a class="templatemo-link" >已上架</a></td>
+                                        <td><button  href="" class="templatemo-delete-btn" id="down" name="downBtn" value="0">下架</button></td>
+                                    </c:if>
+                                    <c:if test="${category.state == '0'}">
+                                        <td><a class="templatemo-link">已下架</a></td>
+                                        <td><button href="" class="templatemo-delete-btn" id="up" name="upBtn" value="1">上架</button></td>
+                                    </c:if>
                                     <td><button href="" class="templatemo-edit-btn" name="changCate">编辑</button></td>
-                                    <td><button href="" class="templatemo-delete-btn" name="deleteCate">删除</button></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -102,29 +109,33 @@
                     </div>
                 </div>
                 <label class="control-label" for="catename">添加分类</label>
-                <form action="${pageContext.request.contextPath}/admin/goods/addCategoryResult" method="post">
+                <form  id="addForm" action="${pageContext.request.contextPath}/admin/goods/addCategoryResult" method="post">
                     <div class="row form-group">
                         <div class="col-lg-6 form-group">
-                            <input type="text" class="form-control" id="catename" name="catename">
+                            <input type="text" class="form-control" id="addName" name="catename">
                         </div>
                         <div class="col-lg-4 form-group">
-                            <button type="submit" class="templatemo-blue-button">添加</button>
+                            <button type="button" class="templatemo-blue-button" name="addBtn" onclick="addCate()">添加</button>
                         </div>
                     </div>
                 </form>
             </div>
-
+            <div class="pagination-wrap" id="page-div-nav">
+                <div class="page-info" id="page-info-area"></div>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- JS -->
         <!-- Templatemo Script -->
+
 <c:if test="${!empty msg}">
     <script type="text/javascript">
         $(document).ready(function () {
             swal('${msg}');
         });
+
     </script>
 </c:if>
 </body>

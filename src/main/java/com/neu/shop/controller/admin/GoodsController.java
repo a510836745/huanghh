@@ -71,26 +71,6 @@ public class GoodsController {
         return "adminAllGoods";
     }
 
-    @RequestMapping("/add")
-    public String showAdd(@ModelAttribute("succeseMsg") String msg, Model model, HttpSession session) {
-        Admin admin = (Admin) session.getAttribute("admin");
-        if (admin == null) {
-            return "redirect:/admin/login";
-        }
-
-        if(!msg.equals("")) {
-            model.addAttribute("msg", msg);
-        }
-
-        List<Category> categoryList = cateService.selectByExample(new CategoryExample());
-        model.addAttribute("categoryList",categoryList);
-
-
-
-        //还需要查询分类传给addGoods页面
-        return "addGoods";
-    }
-
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public Msg updateGoods(Goods goods, HttpSession session) {
@@ -155,6 +135,25 @@ public class GoodsController {
         return "redirect:/admin/goods/add";
     }
 
+    @RequestMapping("/add")
+    public String showAdd(@ModelAttribute("succeseMsg") String msg, Model model, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
+
+        if(!msg.equals("")) {
+            model.addAttribute("msg", msg);
+        }
+
+        List<Category> categoryList = cateService.selectByExample(new CategoryExample());
+        model.addAttribute("categoryList",categoryList);
+        //还需要查询分类传给addGoods页面
+        return "addGoods";
+    }
+
+
+
     @RequestMapping("/addCategory")
     public String addcategory(@ModelAttribute("succeseMsg") String msg, Model model, HttpSession session) {
         Admin admin = (Admin) session.getAttribute("admin");
@@ -176,15 +175,16 @@ public class GoodsController {
     private CateService cateService;
 
     @RequestMapping("/addCategoryResult")
-    public String addCategoryResult(Category category,Model addCategoryResult,RedirectAttributes redirectAttributes){
-        List<Category> categoryList=new ArrayList<>();
+    public String  addCategoryResult(Category category,Model addCategoryResult,RedirectAttributes redirectAttributes){
+        List<Category> categoryList = new ArrayList<>();
         CategoryExample categoryExample=new CategoryExample();
         categoryExample.or().andCatenameEqualTo(category.getCatename());
         categoryList=cateService.selectByExample(categoryExample);
         if (!categoryList.isEmpty())
         {
-            redirectAttributes.addAttribute("succeseMsg","分类已存在");
+            redirectAttributes.addFlashAttribute("succeseMsg","分类已存在");
             return "redirect:/admin/goods/addCategory";
+
         }
         else {
             cateService.insertSelective(category);
@@ -207,10 +207,16 @@ public class GoodsController {
         else return Msg.success("名字已经存在");
     }
 
-    @RequestMapping("/deleteCate")
+    @RequestMapping("/setCateState")
     @ResponseBody
     public Msg deleteCate(Category category){
-        cateService.deleteByPrimaryKey(category.getCateid());
-        return Msg.success("删除成功");
+        int  cateid = category.getCateid();
+        String btnState = category.getState();
+        cateService.updateByPrimaryKey(cateid,btnState);
+        if("1".equals(btnState)) {
+            return Msg.success("上架成功");
+        }else {
+            return Msg.success("下架成功");
+        }
     }
 }

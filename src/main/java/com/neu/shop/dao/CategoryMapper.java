@@ -28,5 +28,5 @@ public interface CategoryMapper {
 
     int updateByPrimaryKeySelective(Category record);
 
-    int updateByPrimaryKey(Category record);
+    int updateByPrimaryKey(@Param("cateid") Integer cateid,@Param("btnState") String btnState);
 }
