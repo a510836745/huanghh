@@ -16,6 +16,8 @@ public class Goods {
 
     private Integer category;
 
+    private String  cateName;
+
     private String detailcate;
 
     private Integer activityid;
@@ -29,6 +31,14 @@ public class Goods {
     private Activity activity;
 
     private Float newPrice;
+
+    public String getCateName() {
+        return cateName;
+    }
+
+    public void setCateName(String cateName) {
+        this.cateName = cateName;
+    }
 
     public String getState() {
         return state;

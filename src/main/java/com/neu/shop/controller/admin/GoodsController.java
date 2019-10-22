@@ -22,10 +22,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
-/**
- * Created by 文辉 on 2017/7/19.
- */
-
 @Controller
 @RequestMapping("/admin/goods")
 public class GoodsController {
@@ -213,6 +209,7 @@ public class GoodsController {
         int  cateid = category.getCateid();
         String btnState = category.getState();
         cateService.updateByPrimaryKey(cateid,btnState);
+        goodsService.updateStatByCateId(cateid,btnState);
         if("1".equals(btnState)) {
             return Msg.success("上架成功");
         }else {

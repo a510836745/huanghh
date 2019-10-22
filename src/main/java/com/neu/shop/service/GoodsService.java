@@ -4,10 +4,6 @@ import com.neu.shop.pojo.*;
 
 import java.util.List;
 
-/**
- * Created by 文辉 on 2017/7/19.
- */
-
 public interface GoodsService {
     public Integer addGoods(Goods goods);
 
@@ -16,6 +12,8 @@ public interface GoodsService {
     public List<Goods> selectByExample(GoodsExample example);
 
     public void updateStateByGoodsId(Integer goodsid,String btnState);
+
+    public void updateStatByCateId(Integer cateId,String btnState);
 
     public void updateGoodsById(Goods goods);
 

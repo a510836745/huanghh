@@ -49,6 +49,7 @@ $(document).ready(function (){
 
         swal({
                 title: "确定上架" + cateName + "吗？",
+                text:"上架时会同时上架该类商品",
                 type: "warning",
                 showCancelButton: true,
                 cancelButtonText: "取消",
@@ -68,6 +69,7 @@ $(document).ready(function (){
 
         swal({
                 title: "确定下架" + cateName + "吗？",
+                text:"下架时会同时下架该类商品",
                 type: "warning",
                 showCancelButton: true,
                 cancelButtonText: "取消",

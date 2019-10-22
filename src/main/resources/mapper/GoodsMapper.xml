@@ -11,6 +11,17 @@
     <result column="detailCate" jdbcType="VARCHAR" property="detailcate" />
     <result column="activityId" jdbcType="INTEGER" property="activityid" />
   </resultMap>
+  <resultMap id="UnionResultMap" type="com.neu.shop.pojo.Goods">
+    <id column="goodsId" jdbcType="INTEGER" property="goodsid" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="upTime" jdbcType="TIMESTAMP" property="uptime" />
+    <result column="category" jdbcType="INTEGER" property="category" />
+    <result column="detailCate" jdbcType="VARCHAR" property="detailcate" />
+    <result column="activityId" jdbcType="INTEGER" property="activityid" />
+    <result column="cateName" jdbcType="VARCHAR" property="cateName" />
+  </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.neu.shop.pojo.Goods">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
@@ -75,6 +86,9 @@
   <sql id="Base_Column_List">
     goodsId, goodsName, price, num, upTime, category, detailCate, activityId, state
   </sql>
+  <sql id="Union_Column_List">
+    goodsId, goodsName, price, num, upTime,category, activityId, goods.state, category.cateName
+  </sql>
   <sql id="Blob_Column_List">
     description
   </sql>
@@ -133,6 +147,11 @@
     <include refid="Blob_Column_List" />
     from goods
     where goodsId = #{goodsid,jdbcType=INTEGER}
+  </select>
+  <select id="selectGoodsAndCateName" parameterType="com.neu.shop.pojo.Goods" resultMap="UnionResultMap">
+    select
+    <include refid="Union_Column_List" />
+    from goods INNER JOIN category ON goods.category = category.cateId
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goods
@@ -341,5 +360,9 @@
   <update id="updateStateByGoodsId" parameterType="com.neu.shop.pojo.Goods">
     update  goods
     set state = #{btnState,jdbcType=VARCHAR} where goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateStatByCateId" parameterType="com.neu.shop.pojo.Goods">
+    update  goods
+    set state = #{btnState,jdbcType=VARCHAR} where category = #{category,jdbcType=INTEGER}
   </update>
 </mapper>

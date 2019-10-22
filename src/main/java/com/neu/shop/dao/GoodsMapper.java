@@ -4,6 +4,7 @@ import com.neu.shop.pojo.Goods;
 import com.neu.shop.pojo.GoodsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface GoodsMapper {
     long countByExample(GoodsExample example);
@@ -36,5 +37,10 @@ public interface GoodsMapper {
 
     int updateStateByGoodsId(@Param("goodsid") Integer goodsid,@Param("btnState") String btnState);
 
+    int updateStatByCateId(@Param("category") Integer category,@Param("btnState") String btnState);
+
     List<Goods> selectByExampleWithBLOBsLimit(GoodsExample digGoodsExample);
+
+    List<Goods> selectGoodsAndCateName();
+
 }

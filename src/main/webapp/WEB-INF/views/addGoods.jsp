@@ -47,7 +47,7 @@
         <div class="templatemo-content-container">
             <div class="templatemo-content-widget white-bg">
                 <h2 class="margin-bottom-10">添加商品</h2>
-                <p>商品的一些基本信息</p>
+
                 <form action="${pageContext.request.contextPath}/admin/goods/addGoodsSuccess" class="templatemo-login-form" method="post" enctype="multipart/form-data">
                     <div class="row form-group">
                         <div class="col-lg-12 form-group">

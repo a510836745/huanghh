@@ -6,9 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by 文辉 on 2017/7/23.
- */
+
 @Service("CateService")
 public interface CateService {
     public List<Category> selectByExample(CategoryExample example);

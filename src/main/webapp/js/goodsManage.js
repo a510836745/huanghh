@@ -246,7 +246,8 @@ function build_goods_table(path,result) {
         var goodsname = $("<td></td>").append(item.goodsname);
         var price = $("<td></td>").append(item.price);
         var num = $("<td></td>").append(item.num);
-        var detailcate = $("<td></td>").append(item.detailcate);
+        // var detailcate = $("<td></td>").append(item.detailcate);
+        var category = $("<td></td>").append(item.cateName);
         var activityid = $("<td></td>").append(item.activityid);
 
         var state = null;
@@ -292,7 +293,7 @@ function build_goods_table(path,result) {
             setTd = $("<td></td>").append(upBtn);
         }
         $("<td></td>").append();
-        $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(detailcate).append(activityid).append(state).append(desTd).append(detailTd).append(editTd).append(setTd).append(actTd).appendTo("#goodsinfo tbody");
+        $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(category).append(activityid).append(state).append(desTd).append(detailTd).append(editTd).append(setTd).append(actTd).appendTo("#goodsinfo tbody");
     })
 }
 

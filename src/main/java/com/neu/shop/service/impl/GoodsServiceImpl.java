@@ -39,13 +39,18 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<Goods> selectByExample(GoodsExample example) {
-        return goodsMapper.selectByExampleWithBLOBs(example);
+        //return goodsMapper.selectByExampleWithBLOBs(example);
+        return goodsMapper.selectGoodsAndCateName();
     }
 
     @Override
     public void updateStateByGoodsId(Integer goodsid,String btnState) {
-
         goodsMapper.updateStateByGoodsId(goodsid,btnState);
+    }
+
+    @Override
+    public void updateStatByCateId(Integer cateId,String btnState) {
+        goodsMapper.updateStatByCateId(cateId,btnState);
     }
 
     @Override
