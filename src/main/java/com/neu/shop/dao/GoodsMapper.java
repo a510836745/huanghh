@@ -23,6 +23,8 @@ public interface GoodsMapper {
 
     Goods selectByPrimaryKey(Integer goodsid);
 
+    Goods selectGoodsOrder(Integer goodsid);
+
     int updateByExampleSelective(@Param("record") Goods record, @Param("example") GoodsExample example);
 
     int updateByExampleWithBLOBs(@Param("record") Goods record, @Param("example") GoodsExample example);
@@ -31,6 +33,8 @@ public interface GoodsMapper {
 
     int updateByPrimaryKeySelective(Goods record);
 
+    int updateGoodsNum(@Param("goodsid")Integer goodsId, @Param("goodsNewNum")Integer goodsNewNum);
+
     int updateByPrimaryKeyWithBLOBs(Goods record);
 
     int updateByPrimaryKey(Goods record);
@@ -38,6 +42,8 @@ public interface GoodsMapper {
     int updateStateByGoodsId(@Param("goodsid") Integer goodsid,@Param("btnState") String btnState);
 
     int updateStatByCateId(@Param("category") Integer category,@Param("btnState") String btnState);
+
+    int updateGoodsAfterDeleteActivity(@Param("activityId") Integer activityId);
 
     List<Goods> selectByExampleWithBLOBsLimit(GoodsExample digGoodsExample);
 

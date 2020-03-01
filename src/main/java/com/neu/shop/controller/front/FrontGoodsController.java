@@ -7,6 +7,7 @@ import com.neu.shop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -177,7 +178,7 @@ public class FrontGoodsController {
         return Msg.success("取消收藏成功");
     }
 
-    @RequestMapping("/category")
+    @RequestMapping("/getGoodByCategory")
     public String getCateGoods(String cate, @RequestParam(value = "page",defaultValue = "1") Integer pn, Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
 
@@ -190,17 +191,20 @@ public class FrontGoodsController {
         List<Category> categoryList = cateService.selectByExample(categoryExample);
 
         //获取查出的类别id
-        List<Integer> cateId = new ArrayList<>();
+//        List<Integer> cateId = new ArrayList<>();
+        Integer cateId = 0;
         for (Category category : categoryList) {
-            cateId.add(category.getCateid());
+//            cateId.add(category.getCateid());
+            cateId = category.getCateid();
         }
 
         //查询数据
         GoodsExample goodsExample = new GoodsExample();
-        goodsExample.or().andDetailcateLike("%" + cate + "%");
-        if (!cateId.isEmpty()) {
-            goodsExample.or().andCategoryIn(cateId);
-        }
+//        goodsExample.or().andDetailcateLike("%" + cate + "%");
+       goodsExample.or().andCategoryEqualTo(cateId);
+//        if (!cateId.isEmpty()) {
+//            goodsExample.or().andCategoryIn(cateId);
+//        }
         List<Goods> goodsList = goodsService.selectByExample(goodsExample);
 
         //获取图片地址

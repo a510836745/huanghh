@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- * Created by 文辉 on 2017/7/27.
- */
 @Controller
 @RequestMapping("/admin/activity")
 public class ActivityController {
@@ -105,8 +102,9 @@ public class ActivityController {
         if (admin == null) {
             return "redirect:/admin/login";
         }
-
+        goodsService.updateGoodsAfterDeleteActivity(activityid);
         activityService.deleteByActivityId(activityid);
+
         return "redirect:/admin/activity/show";
     }
 }

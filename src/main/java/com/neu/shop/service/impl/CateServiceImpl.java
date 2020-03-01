@@ -8,10 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-/**
- * Created by 文辉 on 2017/7/23.
- */
 @Service("cateService")
 public class CateServiceImpl implements CateService {
 
@@ -46,5 +42,21 @@ public class CateServiceImpl implements CateService {
     @Override
     public void updateByPrimaryKey(Integer cateid,String btnState) {
         categoryMapper.updateByPrimaryKey(cateid,btnState);
+    }
+
+    @Override
+    public List<Category> findCategory() throws Exception {
+        List<Category> list = categoryMapper.findCategory();
+        if(list!=null && list.size()>0){
+            return list;
+        }
+        return null;
+    }
+
+    @Override
+    public String findCateName(Integer cateId) {
+        Category c =categoryMapper.selectByPrimaryKey(cateId);
+        String cateName = c.getCatename();
+        return cateName;
     }
 }

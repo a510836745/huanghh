@@ -116,12 +116,8 @@
                     <div class="row form-group">
                         <div class="col-lg-6 form-group">
                             <div id="activity-goodsid" hidden></div>
-                            <label class="control-label" for="activity-id">活动号</label>
-                            <select class="form-control" id="activity-id">
-                                <option value="1">1</option>
-                                <option value="1">1</option>
-                                <option value="1">1</option>
-                            </select>
+                            <label class="control-label" for="activity-id">活动序列号</label>
+                            <select class="form-control" id="activity-id"></select>
                         </div>
                     </div>
                     <div class="row form-group">

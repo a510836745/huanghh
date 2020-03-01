@@ -19,4 +19,8 @@ public interface CateService {
     public void updateByPrimaryKeySelective(Category category);
 
     public void updateByPrimaryKey(Integer cateid,String btnState);
+
+    public List<Category> findCategory() throws Exception;
+
+    public String findCateName(Integer cateId);
 }

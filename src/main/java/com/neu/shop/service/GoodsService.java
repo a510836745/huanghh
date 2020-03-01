@@ -11,15 +11,23 @@ public interface GoodsService {
 
     public List<Goods> selectByExample(GoodsExample example);
 
+    public List<Goods> selectGoodsAndCateName(GoodsExample example);
+
     public void updateStateByGoodsId(Integer goodsid,String btnState);
 
     public void updateStatByCateId(Integer cateId,String btnState);
 
     public void updateGoodsById(Goods goods);
 
+    public void updateGoodsNum(Integer goodsId,Integer goodsNewNum);
+
+    public void updateGoodsAfterDeleteActivity(Integer activityId);
+
     public List<ImagePath> findImagePath(Integer goodsid);
 
     public Goods selectById(Integer goodsid);
+
+    public Goods selectGoodsOrder(Integer goodsid);
 
     public List<Goods> selectByExampleLimit(GoodsExample digGoodsExample);
 

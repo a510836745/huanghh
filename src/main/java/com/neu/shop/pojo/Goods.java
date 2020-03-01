@@ -32,6 +32,10 @@ public class Goods {
 
     private Float newPrice;
 
+    private Integer payNum;
+
+    private String canPay;
+
     public String getCateName() {
         return cateName;
     }
@@ -153,5 +157,21 @@ public class Goods {
 
     public void setNewPrice(Float newPrice) {
         this.newPrice = newPrice;
+    }
+
+    public Integer getPayNum() {
+        return payNum;
+    }
+
+    public void setPayNum(Integer payNum) {
+        this.payNum = payNum;
+    }
+
+    public String getCanPay() {
+        return canPay;
+    }
+
+    public void setCanPay(String canPay) {
+        this.canPay = canPay;
     }
 }

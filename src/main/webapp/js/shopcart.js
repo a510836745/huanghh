@@ -125,12 +125,15 @@ function build_cart_table(result) {
             var goodsname = $("<td></td>").addClass("product-name product-name_2")
                 .append($("<a></a>").attr("href","/shop/detail?goodsid="+item.goodsid).append(item.goodsname));
 
+            var goodscanPay = $("<td></td>").addClass("product-canPay")
+                .append($("<span></span>").addClass("amount-list amount-list-2").append(item.canPay));
+
             var goodsprice = $("<td></td>").addClass("product-price")
                 .append($("<span></span>").addClass("amount-list amount-list-2").append("￥"+item.price));
 
-            var numIput = $("<input/>").addClass("num").attr("type","number").attr("value",item.num);
+            var numIput = $("<input/>").addClass("payNum").attr("type","number").attr("value",item.payNum);
 
-            var num = $("<td></td>").addClass("product-stock-status")
+            var payNum = $("<td></td>").addClass("product-stock-status")
                 .append($("<div></div>").addClass("latest_es_from_2")
                     .append(numIput));
 
@@ -139,17 +142,19 @@ function build_cart_table(result) {
             });
 
             var totalPrice = $("<td></td>").addClass("product-price")
-                .append($("<span></span>").addClass("amount-list amount-list-2").append("￥"+item.price*item.num));
+                .append($("<span></span>").addClass("amount-list amount-list-2").append("￥"+item.price*item.payNum));
 
             var goodsitem = $("<tr></tr>").append(deleteCart)
                 .append(shopimage)
                 .append(goodsname)
+                .append(goodscanPay)
                 .append(goodsprice)
-                .append(num)
+                .append(payNum)
                 .append(totalPrice)
+
                 .appendTo("#cart-table tbody");
             totalnum++;
-            totalMoney = totalMoney + item.price*item.num;
+            totalMoney = totalMoney + item.price*item.payNum;
         });
     }
 

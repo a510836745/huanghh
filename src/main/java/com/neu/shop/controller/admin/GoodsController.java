@@ -39,7 +39,7 @@ public class GoodsController {
         //一页显示几个数据
         PageHelper.startPage(pn, 10);
 
-        List<Goods> employees = goodsService.selectByExample(new GoodsExample());
+        List<Goods> employees = goodsService.selectGoodsAndCateName(new GoodsExample());
 
         //显示几个页号
         PageInfo page = new PageInfo(employees, 5);
@@ -55,12 +55,6 @@ public class GoodsController {
         if (admin == null) {
             return "redirect:/admin/login";
         }
-        /*//一页显示几个数据
-        PageHelper.startPage(pn, 10);
-        List<Goods> employees = goodsService.selectByExample(new GoodsExample());
-        //显示几个页号
-        PageInfo page = new PageInfo(employees,5);
-        model.addAttribute("pageInfo", page);*/
         List<Category> categoryList = cateService.selectByExample(new CategoryExample());
         model.addAttribute("categoryList",categoryList);
 
@@ -109,16 +103,9 @@ public class GoodsController {
             if (multipartFile != null){
 
                 String realPath = request.getSession().getServletContext().getRealPath("/");
-//                    String realPath = request.getContextPath();
-//                System.out.println(realPath);
                 //图片路径=项目在本地磁盘的路径\shop\target\shop\shopimage
                 String imageName = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
                 String imagePath = realPath.substring(0,realPath.indexOf("shop")) + "shopimage" + File.separatorChar + imageName;
-//                String imagePath = realPath + "shopimage\\" + imageName;
-
-                //负载均衡时使用的图片路径
-//                String imagePath = "D:\\Code\\Apache-Tomcat-v8.0\\webapps\\shopimage\\" + imageName;
-//                String imagePath = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
                 //把图片路径存入数据库中
                 goodsService.addImagePath(new ImagePath(null, goods.getGoodsid(),imageName));
                 //存图片

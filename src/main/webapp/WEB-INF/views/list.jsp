@@ -252,10 +252,10 @@
                                                     ${good.price}
                                             </td>
                                             <td class="col-lg-1">
-                                                    ${good.num}
+                                                    ${good.payNum}
                                             </td>
                                             <td class="col-lg-2">
-                                                    ${good.category}
+                                                    ${good.cateName}
                                             </td>
                                         </tr>
                                         </tbody>
@@ -345,10 +345,10 @@
                                                     ${good.price}
                                             </td>
                                             <td class="col-lg-1">
-                                                    ${good.num}
+                                                    ${good.payNum}
                                             </td>
                                             <td class="col-lg-2">
-                                                    ${good.category}
+                                                    ${good.cateName}
                                             </td>
                                         </tr>
                                         </tbody>
@@ -356,7 +356,7 @@
                                     </c:forEach>
                                 </div>
                                 <div class="mdl-card__actions mdl-card--border">
-                                    <button class="templatemo-blue-button " name="finishList"><h5>完成订单</h5></button>
+                                    <button class="templatemo-blue-button " name="finishList"><h5>确认收货</h5></button>
                                 </div>
                             </div>
                         </c:if>
@@ -443,10 +443,10 @@
                                                     ${good.price}
                                             </td>
                                             <td class="col-lg-1">
-                                                    ${good.num}
+                                                    ${good.payNum}
                                             </td>
                                             <td class="col-lg-2">
-                                                    ${good.category}
+                                                    ${good.cateName}
                                             </td>
                                             <td class="col-lg-1">
                                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="evaluate" ><h5>评价</h5></button>

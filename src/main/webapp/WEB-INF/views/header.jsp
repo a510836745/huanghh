@@ -1,16 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 文辉
-  Date: 2017/7/18
-  Time: 15:37
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
 <div class="row">
     <div class="col-md-4" role="navigation">
-        <!-- <h1 style="font-size: 20px;margin-top: 9px">东大咸鱼</h1> -->
 
         <ul class="nav nav-pills">
             <c:if test="${empty sessionScope.user}">
@@ -62,7 +54,7 @@
                         class="icon-bar"></span> <span class="icon-bar"></span> <span
                         class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/main"><!-- <img alt="Brand" style="display: inline-block;" src="./image/tao.jpg" width="20" height="20"> --><span class="logo-word">淘身边</span></a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/main"><!-- <img alt="Brand" style="display: inline-block;" src="./image/tao.jpg" width="20" height="20"> --><span class="logo-word">泰购乐</span></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

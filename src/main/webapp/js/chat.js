@@ -21,31 +21,6 @@ $(document).ready(function(){
 			jQuery("#send-message").click();
 		}
 	});
-
-
-	/*var request = {
-	    "perception": {
-	        "inputText": {
-	            "text": "附近的酒店"
-	        },
-	        "selfInfo": {
-	            "location": {
-	                "city": "北京",
-	                "latitude": "39.45492",
-	                "longitude": "119.239293",
-	                "nearest_poi_name": "上地环岛南",
-	                "province": "北京",
-	                "street": "信息路"
-	            },
-	        }
-	    },
-	    "userInfo": {
-	        "apiKey": "0a1bfc7154e94d009460be836523c1d1",
-	        "userId": "user"
-	    }
-	};*/
-
-
 });
 
 function send(data,userid){

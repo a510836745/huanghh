@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neu.shop.pojo.*;
 import com.neu.shop.service.AddressService;
+import com.neu.shop.service.CateService;
 import com.neu.shop.service.GoodsService;
 import com.neu.shop.service.OrderService;
 import com.neu.shop.service.UserService;
@@ -33,6 +34,8 @@ public class CustomerController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CateService cateService;
 
     @RequestMapping("/register")
     public String register(){
@@ -201,17 +204,28 @@ public class CustomerController {
            order=orderList.get(i);
            OrderItemExample orderItemExample=new OrderItemExample();
            orderItemExample.or().andOrderidEqualTo(order.getOrderid());
+
+           //根据订单Id 查到
            orderItemList=orderService.getOrderItemByExample(orderItemExample);
            List<Goods> goodsList=new ArrayList<>();
            List<Integer> goodsIdList=new ArrayList<>();
+           GoodsExample goodsExample=new GoodsExample();
            for (Integer j=0;j<orderItemList.size();j++)
            {
                orderItem=orderItemList.get(j);
                goodsIdList.add(orderItem.getGoodsid());
+               int payNum = orderItem.getNum();
+               int goodsId = orderItem.getGoodsid();
+               goodsExample.or().andGoodsidEqualTo(goodsId);
+               goods = goodsService.selectById(goodsId);
+               String cateName = cateService.findCateName(goods.getCategory());
+               goods.setPayNum(payNum);
+               goods.setCateName(cateName);
+               goodsList.add(goods);
            }
-           GoodsExample goodsExample=new GoodsExample();
-           goodsExample.or().andGoodsidIn(goodsIdList);
-           goodsList=goodsService.selectByExample(goodsExample);
+
+           //goodsExample.or().andGoodsidIn(goodsIdList);
+           //goodsList=goodsService.selectByExample(goodsExample);
            order.setGoodsInfo(goodsList);
            address=addressService.selectByPrimaryKey(order.getAddressid());
            order.setAddress(address);
@@ -225,74 +239,6 @@ public class CustomerController {
         return "list";
     }
 
-   /* @RequestMapping("/info/list")
-    public String list(HttpServletRequest request,Model orderModel,
-                       @RequestParam(value = "pageIssend",defaultValue = "1") Integer pnIssend,
-                       @RequestParam(value = "pageIsrecive",defaultValue = "1") Integer pnIsrecive,
-                       @RequestParam(value = "pageIscompelete",defaultValue = "1") Integer pnIscompelete
-
-    ){
-        //一页显示几个数据
-        PageHelper.startPage(pnIssend, 3);
-        PageHelper.startPage(pnIsrecive, 3);
-        PageHelper.startPage(pnIscompelete, 3);
-        HttpSession session=request.getSession();
-        User user;
-        user=(User)session.getAttribute("user");
-
-        if (user==null)
-        {
-            return "redirect:/login";
-        }
-
-        OrderExample orderExample=new OrderExample();
-        orderExample.or().andUseridEqualTo(user.getUserid());
-        List<Order> orderList=orderService.selectOrderByExample(orderExample);
-       *//* orderModel.addAttribute("orderList",orderList);*//*
-        Order order;
-        OrderItem orderItem;
-        List<OrderItem> orderItemList=new ArrayList<>();
-        Goods goods;
-        Address address;
-        for (Integer i=0;i<orderList.size();i++)
-        {
-            order=orderList.get(i);
-            OrderItemExample orderItemExample=new OrderItemExample();
-            orderItemExample.or().andOrderidEqualTo(order.getOrderid());
-            orderItemList=orderService.getOrderItemByExample(orderItemExample);
-            List<Goods> goodsList=new ArrayList<>();
-            List<Integer> goodsIdList=new ArrayList<>();
-            for (Integer j=0;j<orderItemList.size();j++)
-            {
-                orderItem=orderItemList.get(j);
-                goodsIdList.add(orderItem.getGoodsid());
-            }
-            GoodsExample goodsExample=new GoodsExample();
-            goodsExample.or().andGoodsidIn(goodsIdList);
-            goodsList=goodsService.selectByExample(goodsExample);
-            order.setGoodsInfo(goodsList);
-            address=addressService.selectByPrimaryKey(order.getAddressid());
-            order.setAddress(address);
-            orderList.set(i,order);
-        }
-
-
-
-        //显示几个页号
-        PageInfo pageIssend = new PageInfo(orderList,2);
-
-        PageInfo pageIsrecive = new PageInfo(orderList,2);
-
-        PageInfo pageIscompelete = new PageInfo(orderList,2);
-
-        orderModel.addAttribute("pageInfoIssend", pageIssend);
-
-        orderModel.addAttribute("pageInfoIsrecive", pageIsrecive);
-
-        orderModel.addAttribute("pageInfoIscompelete", pageIscompelete);
-
-        return "list";
-    }*/
 
     @RequestMapping("/deleteList")
     @ResponseBody
@@ -368,7 +314,7 @@ public class CustomerController {
         order.setIsreceive(true);
         order.setIscomplete(true);
         orderService.updateOrderByKey(order);
-        return Msg.success("完成订单成功");
+        return Msg.success("确认收货成功");
     }
 
     @RequestMapping("/logout")

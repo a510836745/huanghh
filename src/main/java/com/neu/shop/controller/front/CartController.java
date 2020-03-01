@@ -78,11 +78,17 @@ public class CartController {
         List<Goods> goodsAndImage = new ArrayList<>();
         for (ShopCart cart:shopCart) {
             Goods goods = goodsService.selectById(cart.getGoodsid());
-
             List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
             goods.setImagePaths(imagePathList);
-            goods.setNum(cart.getGoodsnum());
+            goods.setPayNum(cart.getGoodsnum());
             goodsAndImage.add(goods);
+            int a = goods.getNum();
+            int b = cart.getGoodsnum();
+            if(goods.getNum()<cart.getGoodsnum()) {
+                goods.setCanPay("库存不足");
+            }else {
+                goods.setCanPay("库存充足");
+            }
         }
 
         return Msg.success("查询成功").add("shopcart",goodsAndImage);

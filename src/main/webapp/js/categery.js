@@ -101,7 +101,7 @@ function ok(category){
 }
 function addCate() {
     //var cateName = $("[id='addName']").val;
-    var addForm = document.getElementById('addForm');
+    var addCategoryForm = document.getElementById('addCategoryForm');
     var cateName = $('#addName').val();
     if(cateName!=null&&cateName!=''&&cateName!=undefined){
         swal({
@@ -114,7 +114,7 @@ function addCate() {
                 closeOnConfirm: false,
             },
             function (){
-                addForm.submit();
+                addCategoryForm.submit();
                 return true;
             });
     }else {

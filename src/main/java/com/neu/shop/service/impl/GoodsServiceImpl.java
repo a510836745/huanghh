@@ -39,7 +39,11 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<Goods> selectByExample(GoodsExample example) {
-        //return goodsMapper.selectByExampleWithBLOBs(example);
+        return goodsMapper.selectByExampleWithBLOBs(example);
+    }
+
+    @Override
+    public List<Goods> selectGoodsAndCateName(GoodsExample example) {
         return goodsMapper.selectGoodsAndCateName();
     }
 
@@ -59,6 +63,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public void updateGoodsNum(Integer goodsId, Integer goodsNewNum) {
+        goodsMapper.updateGoodsNum(goodsId,goodsNewNum);
+    }
+
+    @Override
+    public void updateGoodsAfterDeleteActivity(Integer activityId) {
+        goodsMapper.updateGoodsAfterDeleteActivity(activityId);
+    }
+
+    @Override
     public List<ImagePath> findImagePath(Integer goodsid) {
         ImagePathExample imagePathExample = new ImagePathExample();
         imagePathExample.or().andGoodidEqualTo(goodsid);
@@ -69,6 +83,11 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Goods selectById(Integer goodsid) {
         return goodsMapper.selectByPrimaryKey(goodsid);
+    }
+
+    @Override
+    public Goods selectGoodsOrder(Integer goodsid) {
+        return goodsMapper.selectGoodsOrder(goodsid);
     }
 
     @Override

@@ -91,7 +91,7 @@
                                                 class="amount-list amount-list-2">￥${goods.price}</span></td>
                                         <td class="product-stock-status">
                                             <div class="latest_es_from_2">
-                                                <span>${goods.num}</span>
+                                                <span>${goods.payNum}</span>
                                             </div>
                                         </td>
                                         <td class="product-price"><span

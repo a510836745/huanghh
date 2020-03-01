@@ -1,6 +1,3 @@
-/**
- * Created by 文辉 on 2017/7/22.
- */
 var activity = [];
 var currentPage = 1;
 $(document).ready(function () {
@@ -47,46 +44,31 @@ $(document).on("click","#saveUpdate",function () {
     var udescription = $("#description").val();
     var ucategory = $("#category").val();
     var udetailcate = $("#detailcate").val();
-
-
-    $.ajax({
-        url:"/shop/admin/goods/update/",
-        type:"POST",
-        data:{
-            goodsid:ugoodsid,
-            goodsname:ugoodsname,
-            price:uprice,
-            num:unum,
-            description:udescription,
-            category:ucategory,
-            detailcate:udetailcate,
-        },
-        success:function(result){
-            $("#update-goods").modal('hide');
-            swal(result.msg,'','success');
-            to_page('/shop',currentPage);
-        },
-        error:function(){
-            alert("错误！！");
-        }
-    });
-
-    /*var goodsid = $("#goodsid").text();
-    var updateForm = new FormData(document.getElementById("update-goods"));
-    $.ajax({
-        url:"/shop/admin/goods/update/" + goodsid,
-        type:"post",
-        data:updateForm,
-        processData:false,
-        contentType:false,
-        success:function(result){
-            swal(result.msg,'','success');
-        },
-        error:function(){
-            alert("错误！！");
-            window.clearInterval(timer);
-        }
-    });*/
+    if(ugoodsid!=''&&ugoodsname!=''&&uprice!=''&&unum!=''&&ucategory!=''&&udetailcate!=''){
+        $.ajax({
+            url:"/shop/admin/goods/update/",
+            type:"POST",
+            data:{
+                goodsid:ugoodsid,
+                goodsname:ugoodsname,
+                price:uprice,
+                num:unum,
+                description:udescription,
+                category:ucategory,
+                detailcate:udetailcate,
+            },
+            success:function(result){
+                $("#update-goods").modal('hide');
+                swal(result.msg,'','success');
+                to_page('/shop',currentPage);
+            },
+            error:function(){
+                alert("错误！！");
+            }
+        });
+    }else {
+        swal("修改数据不完整,无法修改")
+    }
 });
 
 $(document).on("click",".templatemo-delete-btn",function () {
@@ -155,24 +137,49 @@ $(document).on("click",".templatemo-up-btn",function () {
         swal("请勿重复上架");
     }
 });
+function addGoods() {
+    var addGoodsForm = document.getElementById('addGoodsForm');
+    var addName = $("input[name='goodsname']").val();
+    var addPrice = $("input[name='price']").val();
+    var addNum = $("input[name='num']").val();
+    var addDescription = $("input[name='description']").val();
+    if(addName!=''&&addPrice!=''&&addNum!=''&& addDescription!=''){
+        swal({
+                title: "确定添加" + addName + "吗？",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "取消",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定！",
+                closeOnConfirm: false,
+            },
+            function (){
+                addGoodsForm.submit();
+                return true;
+            });
+        }else {
+        swal("商品信息不完整,添加失败")
+    }
 
+}
 /*$(document).on("click",".templatemo-activity-btn",function () {
     var goodsid = $(this).parents("tr").find("td:eq(0)").text();
 
 });*/
 
-function showActInfo(activityId) {
-    $('#activityname').text(activity[activityId-1].activityname);
-    $('#activitydes').text(activity[activityId-1].activitydes);
-    $('#discount').text(activity[activityId-1].discount);
-    $('#fullprice').text(activity[activityId-1].fullprice);
-    $('#reduceprice').text(activity[activityId-1].reduceprice);
-    $('#fullnum').text(activity[activityId-1].fullnum);
-    $('#reducenum').text(activity[activityId-1].reducenum);
+function showActInfo(activityNum) {
+    $('#activityname').text(activity[activityNum].activityname);
+    $('#activitydes').text(activity[activityNum].activitydes);
+    $('#discount').text(activity[activityNum].discount);
+    $('#fullprice').text(activity[activityNum].fullprice);
+    $('#reduceprice').text(activity[activityNum].reduceprice);
+    $('#fullnum').text(activity[activityNum].fullnum);
+    $('#reducenum').text(activity[activityNum].reducenum);
 }
 
 $("#activity-id").change(function () {
-    showActInfo($(this).val());
+    showActInfo($(this).find("option:selected").text());
+
 });
 
 function getActivity() {
@@ -184,7 +191,7 @@ function getActivity() {
                 $("#activity-id").empty();
                 activity = result.info.activity;
                 $.each(activity, function (index,item) {
-                    $("#activity-id").append($("<option></option>").attr("value",item.activityid).append(item.activityid));
+                    $("#activity-id").append($("<option></option>").attr("value",item.activityid).append(index));
                 });
                 showActInfo(1);
             } else {

@@ -48,27 +48,27 @@
             <div class="templatemo-content-widget white-bg">
                 <h2 class="margin-bottom-10">添加商品</h2>
 
-                <form action="${pageContext.request.contextPath}/admin/goods/addGoodsSuccess" class="templatemo-login-form" method="post" enctype="multipart/form-data">
+                <form id="addGoodsForm"  action="${pageContext.request.contextPath}/admin/goods/addGoodsSuccess" class="templatemo-login-form" method="post" enctype="multipart/form-data">
                     <div class="row form-group">
                         <div class="col-lg-12 form-group">
                             <label class="control-label" for="inputWithSuccess">商品名称</label>
-                            <input type="text" class="form-control" id="inputWithSuccess" name="goodsname">
+                            <input type="text" class="form-control" id="inputWithSuccess" name="goodsname" id="goodsname">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-6 form-group">
                             <label class="control-label" for="inputWithWarning">价格</label>
-                            <input type="number" class="form-control" id="inputWithWarning" name="price">
+                            <input type="number" class="form-control" id="inputWithWarning" name="price" id="price">
                         </div>
                         <div class="col-lg-6 form-group">
                             <label class="control-label" for="inputWithError">数量</label>
-                            <input type="number" class="form-control" id="inputWithError" name="num">
+                            <input type="number" class="form-control" id="inputWithError" name="num" id="num">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-12 form-group">
                             <label class="control-label" for="inputNote">商品描述</label>
-                            <textarea class="form-control" id="inputNote" rows="3" name="description"></textarea>
+                            <textarea class="form-control" id="inputNote" rows="3" name="description" id="description"></textarea>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="form-group text-right">
-                        <button type="submit" class="templatemo-blue-button">添加</button>
+                        <button type="button" class="templatemo-blue-button" onclick="addGoods()">添加</button>
                         <button type="reset" class="templatemo-white-button">重置</button>
                     </div>
                 </form>
@@ -107,6 +107,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js"></script>        <!-- jQuery -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-filestyle.min.js"></script>  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>        <!-- Templatemo Script -->
+<script src="${pageContext.request.contextPath}/js/goodsManage.js"></script>
 <c:if test="${!empty msg}">
     <script type="text/javascript">
         $(document).ready(function () {

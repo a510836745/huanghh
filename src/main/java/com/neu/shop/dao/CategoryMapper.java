@@ -16,6 +16,8 @@ public interface CategoryMapper {
 
     int insertSelective(Category record);
 
+    List<Category> findCategory();
+
     List<Category> selectByExample(CategoryExample example);
 
     List<Category> selectByExampleLimit(CategoryExample example);

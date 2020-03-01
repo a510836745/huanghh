@@ -58,6 +58,8 @@
                                         <th class="product-thumbnail product-thumbnail-2"></th>
                                         <th class="product-name product-name_2"><span
                                                 class="nobr">商品</span></th>
+                                        <th class="product-canPay"><span class="nobr"> 库存状况
+												</span></th>
                                         <th class="product-price"><span class="nobr"> 价格
 												</span></th>
                                         <th class="product-stock-stauts"><span class="nobr">

@@ -67,29 +67,34 @@ public class OrderController {
 
         for (ShopCart cart:shopCart) {
             Goods goods = goodsService.selectById(cart.getGoodsid());
+            int goodsNum = goods.getNum();
+            if(goodsNum>=cart.getGoodsnum()){
+                List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
+                goods.setImagePaths(imagePathList);
+                goods.setPayNum(cart.getGoodsnum());
 
-            List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
-            goods.setImagePaths(imagePathList);
-            goods.setNum(cart.getGoodsnum());
 
-            //活动信息
-            Activity activity = activityService.selectByKey(goods.getActivityid());
-            goods.setActivity(activity);
+                //活动信息
+                Activity activity = activityService.selectByKey(goods.getActivityid());
+                goods.setActivity(activity);
 
-            if(activity.getDiscount() != 1) {
-                goods.setNewPrice(goods.getPrice()*goods.getNum()* activity.getDiscount());
-            } else if(activity.getFullnum() != null) {
-                if (goods.getNum() >= activity.getFullnum()) {
-                    goods.setNewPrice((float) (goods.getPrice()*(goods.getNum()-activity.getReducenum())));
+                if(activity.getDiscount() != 1) {
+                    goods.setNewPrice(goods.getPrice()*goods.getPayNum()* activity.getDiscount());
+                } else if(activity.getFullnum() != null) {
+                    if (goods.getPayNum() >= activity.getFullnum()) {
+                        goods.setNewPrice((float) (goods.getPrice()*(goods.getPayNum()-activity.getReducenum())));
+                    } else {
+                        goods.setNewPrice((float) (goods.getPrice()*goods.getPayNum()));
+                    }
                 } else {
-                    goods.setNewPrice((float) (goods.getPrice()*goods.getNum()));
+                    goods.setNewPrice((float) (goods.getPrice()*goods.getPayNum()));
                 }
-            } else {
-                goods.setNewPrice((float) (goods.getPrice()*goods.getNum()));
+                totalPrice = totalPrice + goods.getNewPrice();
+                oldTotalPrice = oldTotalPrice + goods.getPayNum() * goods.getPrice();
+                goodsAndImage.add(goods);
+            }else{
+                continue;
             }
-            totalPrice = totalPrice + goods.getNewPrice();
-            oldTotalPrice = oldTotalPrice + goods.getNum() * goods.getPrice();
-            goodsAndImage.add(goods);
         }
 
         model.addAttribute("totalPrice", totalPrice);
@@ -124,7 +129,14 @@ public class OrderController {
         for (ShopCart cart : shopCart) {
             orderService.insertOrderItem(new OrderItem(null, orderId, cart.getGoodsid(), cart.getGoodsnum()));
         }
-
+        //库存减少
+        for (ShopCart cart : shopCart){
+            Goods goods = goodsService.selectById(cart.getGoodsid());
+            int goodsNum = goods.getNum();
+            int payNum = cart.getGoodsnum();
+            int goodsNewNum = goodsNum - payNum;
+            goodsService.updateGoodsNum(cart.getGoodsid(),goodsNewNum);
+        }
         return Msg.success("购买成功");
     }
 

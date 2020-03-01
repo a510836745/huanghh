@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <label class="control-label" for="catename">添加分类</label>
-                <form  id="addForm" action="${pageContext.request.contextPath}/admin/goods/addCategoryResult" method="post">
+                <form  id="addCategoryForm" action="${pageContext.request.contextPath}/admin/goods/addCategoryResult" method="post">
                     <div class="row form-group">
                         <div class="col-lg-6 form-group">
                             <input type="text" class="form-control" id="addName" name="catename">
