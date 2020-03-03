@@ -6,6 +6,7 @@
     <result column="orderId" jdbcType="INTEGER" property="orderid" />
     <result column="goodsId" jdbcType="INTEGER" property="goodsid" />
     <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="totalNum" jdbcType="INTEGER" property="totalNum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -81,6 +82,9 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+  </select>
+  <select id="selectHotGoodsList" parameterType="com.neu.shop.pojo.OrderItemExample" resultMap="BaseResultMap">
+    select goodsId, sum(num) as totalNum from orderitem GROUP BY goodsId ORDER BY totalNum DESC LIMIT 4;
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

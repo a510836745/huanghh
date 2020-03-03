@@ -9,6 +9,8 @@ public class OrderItem {
 
     private Integer num;
 
+    private Integer totalNum;
+
     public OrderItem() {
     }
 
@@ -50,5 +52,13 @@ public class OrderItem {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getTotalNum() {
+        return totalNum;
+    }
+
+    public void setTotalNum(Integer totalNum) {
+        this.totalNum = totalNum;
     }
 }

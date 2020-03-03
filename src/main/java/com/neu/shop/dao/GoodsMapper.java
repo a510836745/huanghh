@@ -49,4 +49,6 @@ public interface GoodsMapper {
 
     List<Goods> selectGoodsAndCateName();
 
+    List<Goods> selectNewGoods();
+
 }

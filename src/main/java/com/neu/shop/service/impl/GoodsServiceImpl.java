@@ -48,6 +48,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> selectNewGoods() {
+        return goodsMapper.selectNewGoods();
+    }
+
+    @Override
     public void updateStateByGoodsId(Integer goodsid,String btnState) {
         goodsMapper.updateStateByGoodsId(goodsid,btnState);
     }

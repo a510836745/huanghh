@@ -70,41 +70,89 @@
         </div>
     </div>
     <div class="content">
-
-        <c:if test="${!empty digGoods}">
+        <c:if test="${!empty hotGoodsAndImageList}">
             <div class="module">
                 <div class="hd">
-                    <h2>数码</h2>
+                    <h2>热门商品</h2>
                     <hr>
                 </div>
 
                 <div class="bd">
                     <div class="data">
                         <ul>
-                            <c:forEach items="${digGoods}" var="goods">
+                            <c:forEach items="${hotGoodsAndImageList}" var="hotgoods">
                                 <li class="data-item-li">
                                     <div class="to-big">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"><img src="/shopimage/${goods.imagePaths[0].path}" alt=""
+                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${hotgoods.goodsid}"><img src="/shopimage/${hotgoods.imagePaths[0].path}" alt=""
+                                                                                                                             width="200" height="200"/>
+                                        </a>
+                                    </div>
+                                    <p class="text-right">
+                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${hotgoods.goodsid}">${hotgoods.goodsname}</a>
+                                    </p>
+                                    <div class="text-right">
+                                        <b>￥${hotgoods.price}</b>
+                                    </div>
+                                    <div>
+                                        <c:if test="${hotgoods.fav}">
+                                            <button
+                                                    class="like-button glyphicon glyphicon-heart btn btn-default"
+                                                    data-id="${hotgoods.goodsid}"
+                                                    style="display: none;"></button>
+                                        </c:if>
+                                        <c:if test="${!hotgoods.fav}">
+                                            <button
+                                                    class="like-button glyphicon glyphicon-heart-empty btn btn-default"
+                                                    data-id="${hotgoods.goodsid}"
+                                                    style="display: none;"></button>
+                                        </c:if>
+                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                    </div>
+                                </li>
+                            </c:forEach>
+
+
+                            <div class="clear-float" style="clear: both;"></div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </c:if>
+
+        <c:if test="${!empty newGoodsList}">
+            <div class="module">
+                <div class="hd">
+                    <h2>最新商品</h2>
+                    <hr>
+                </div>
+
+                <div class="bd">
+                    <div class="data">
+                        <ul>
+                            <c:forEach items="${newGoodsList}" var="newgoods">
+                                <li class="data-item-li">
+                                    <div class="to-big">
+                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${newgoods.goodsid}"><img src="/shopimage/${newgoods.imagePaths[0].path}" alt=""
                                                         width="200" height="200"/>
                                         </a>
                                     </div>
                                     <p class="text-right">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">${goods.goodsname}</a>
+                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${newgoods.goodsid}">${newgoods.goodsname}</a>
                                     </p>
                                     <div class="text-right">
-                                        <b>￥${goods.price}</b>
+                                        <b>￥${newgoods.price}</b>
                                     </div>
                                     <div>
-                                        <c:if test="${goods.fav}">
+                                        <c:if test="${newgoods.fav}">
                                             <button
                                                     class="like-button glyphicon glyphicon-heart btn btn-default"
-                                                    data-id="${goods.goodsid}"
+                                                    data-id="${newgoods.goodsid}"
                                                     style="display: none;"></button>
                                         </c:if>
-                                        <c:if test="${!goods.fav}">
+                                        <c:if test="${!newgoods.fav}">
                                             <button
                                                     class="like-button glyphicon glyphicon-heart-empty btn btn-default"
-                                                    data-id="${goods.goodsid}"
+                                                    data-id="${newgoods.goodsid}"
                                                     style="display: none;"></button>
                                         </c:if>
                                         <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
@@ -120,153 +168,153 @@
             </div>
         </c:if>
 
-        <c:if test="${!empty houseGoods}">
-            <div class="module">
-                <div class="hd">
-                    <h2>家电</h2>
-                    <hr>
-                </div>
+<%--        <c:if test="${!empty houseGoods}">--%>
+<%--            <div class="module">--%>
+<%--                <div class="hd">--%>
+<%--                    <h2>家电</h2>--%>
+<%--                    <hr>--%>
+<%--                </div>--%>
 
-                <div class="bd">
-                    <div class="data">
-                        <ul>
-                            <c:forEach items="${houseGoods}" var="housegoods">
-                                <li class="data-item-li">
-                                    <div class="to-big">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${housegoods.goodsid}"> <img
-                                                src="/shopimage/${housegoods.imagePaths[0].path}" alt=""
-                                                width="200" height="200">
-                                        </a>
-                                    </div>
-                                    <p class="text-right">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${housegoods.goodsid}">${housegoods.goodsname}</a>
-                                    </p>
-                                    <div class="text-right">
-                                        <b>￥${housegoods.price}</b>
-                                    </div>
-                                    <div>
-                                        <c:if test="${housegoods.fav}">
-                                            <button
-                                                    class="like-button glyphicon glyphicon-heart btn btn-default"
-                                                    data-id="${housegoods.goodsid}"
-                                                    style="display: none;"></button>
-                                        </c:if>
-                                        <c:if test="${!housegoods.fav}">
-                                            <button
-                                                    class="like-button glyphicon glyphicon-heart-empty btn btn-default"
-                                                    data-id="${housegoods.goodsid}"
-                                                    style="display: none;"></button>
-                                        </c:if>
-                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
-                                    </div>
-                                </li>
-                            </c:forEach>
+<%--                <div class="bd">--%>
+<%--                    <div class="data">--%>
+<%--                        <ul>--%>
+<%--                            <c:forEach items="${houseGoods}" var="housegoods">--%>
+<%--                                <li class="data-item-li">--%>
+<%--                                    <div class="to-big">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${housegoods.goodsid}"> <img--%>
+<%--                                                src="/shopimage/${housegoods.imagePaths[0].path}" alt=""--%>
+<%--                                                width="200" height="200">--%>
+<%--                                        </a>--%>
+<%--                                    </div>--%>
+<%--                                    <p class="text-right">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${housegoods.goodsid}">${housegoods.goodsname}</a>--%>
+<%--                                    </p>--%>
+<%--                                    <div class="text-right">--%>
+<%--                                        <b>￥${housegoods.price}</b>--%>
+<%--                                    </div>--%>
+<%--                                    <div>--%>
+<%--                                        <c:if test="${housegoods.fav}">--%>
+<%--                                            <button--%>
+<%--                                                    class="like-button glyphicon glyphicon-heart btn btn-default"--%>
+<%--                                                    data-id="${housegoods.goodsid}"--%>
+<%--                                                    style="display: none;"></button>--%>
+<%--                                        </c:if>--%>
+<%--                                        <c:if test="${!housegoods.fav}">--%>
+<%--                                            <button--%>
+<%--                                                    class="like-button glyphicon glyphicon-heart-empty btn btn-default"--%>
+<%--                                                    data-id="${housegoods.goodsid}"--%>
+<%--                                                    style="display: none;"></button>--%>
+<%--                                        </c:if>--%>
+<%--                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
+<%--                            </c:forEach>--%>
 
-                            <div class="clear-float" style="clear: both;"></div>
-                        </ul>
+<%--                            <div class="clear-float" style="clear: both;"></div>--%>
+<%--                        </ul>--%>
 
-                    </div>
-                </div>
-            </div>
-        </c:if>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:if>--%>
 
-        <c:if test="${!empty colGoods}">
-            <div class="module">
-                <div class="hd">
-                    <h2>服饰</h2>
-                    <hr>
-                </div>
+<%--        <c:if test="${!empty colGoods}">--%>
+<%--            <div class="module">--%>
+<%--                <div class="hd">--%>
+<%--                    <h2>服饰</h2>--%>
+<%--                    <hr>--%>
+<%--                </div>--%>
 
-                <div class="bd">
-                    <div class="data">
-                        <ul>
-                            <c:forEach items="${colGoods}" var="colgoods">
-                                <li class="data-item-li">
-                                    <div class="to-big">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${colgoods.goodsid}"> <img
-                                                src="/shopimage/${colgoods.imagePaths[0].path}" alt=""
-                                                width="200" height="200">
-                                        </a>
-                                    </div>
-                                    <p class="text-right">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${colgoods.goodsid}">${colgoods.goodsname}</a>
-                                    </p>
-                                    <div class="text-right">
-                                        <b>￥${colgoods.price}</b>
-                                    </div>
-                                    <div>
-                                        <c:if test="${colgoods.fav}">
-                                            <button
-                                                    class="like-button glyphicon glyphicon-heart btn btn-default"
-                                                    data-id="${colgoods.goodsid}"
-                                                    style="display: none;"></button>
-                                        </c:if>
-                                        <c:if test="${!colgoods.fav}">
-                                            <button
-                                                    class="like-button glyphicon glyphicon-heart-empty btn btn-default"
-                                                    data-id="${colgoods.goodsid}"
-                                                    style="display: none;"></button>
-                                        </c:if>
-                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
-                                    </div>
-                                </li>
-                            </c:forEach>
+<%--                <div class="bd">--%>
+<%--                    <div class="data">--%>
+<%--                        <ul>--%>
+<%--                            <c:forEach items="${colGoods}" var="colgoods">--%>
+<%--                                <li class="data-item-li">--%>
+<%--                                    <div class="to-big">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${colgoods.goodsid}"> <img--%>
+<%--                                                src="/shopimage/${colgoods.imagePaths[0].path}" alt=""--%>
+<%--                                                width="200" height="200">--%>
+<%--                                        </a>--%>
+<%--                                    </div>--%>
+<%--                                    <p class="text-right">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${colgoods.goodsid}">${colgoods.goodsname}</a>--%>
+<%--                                    </p>--%>
+<%--                                    <div class="text-right">--%>
+<%--                                        <b>￥${colgoods.price}</b>--%>
+<%--                                    </div>--%>
+<%--                                    <div>--%>
+<%--                                        <c:if test="${colgoods.fav}">--%>
+<%--                                            <button--%>
+<%--                                                    class="like-button glyphicon glyphicon-heart btn btn-default"--%>
+<%--                                                    data-id="${colgoods.goodsid}"--%>
+<%--                                                    style="display: none;"></button>--%>
+<%--                                        </c:if>--%>
+<%--                                        <c:if test="${!colgoods.fav}">--%>
+<%--                                            <button--%>
+<%--                                                    class="like-button glyphicon glyphicon-heart-empty btn btn-default"--%>
+<%--                                                    data-id="${colgoods.goodsid}"--%>
+<%--                                                    style="display: none;"></button>--%>
+<%--                                        </c:if>--%>
+<%--                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
+<%--                            </c:forEach>--%>
 
-                            <div class="clear-float" style="clear: both;"></div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </c:if>
+<%--                            <div class="clear-float" style="clear: both;"></div>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:if>--%>
 
-        <c:if test="${!empty bookGoods}">
-            <div class="module">
-                <div class="hd">
-                    <h2>书籍</h2>
-                    <hr>
-                </div>
+<%--        <c:if test="${!empty bookGoods}">--%>
+<%--            <div class="module">--%>
+<%--                <div class="hd">--%>
+<%--                    <h2>书籍</h2>--%>
+<%--                    <hr>--%>
+<%--                </div>--%>
 
-                <div class="bd">
-                    <div class="data">
-                        <ul>
-                            <c:forEach items="${bookGoods}" var="bookgoods">
-                                <li class="data-item-li">
-                                    <div class="to-big">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${bookgoods.goodsid}"> <img
-                                                src="/shopimage/${bookgoods.imagePaths[0].path}" alt=""
-                                                width="200" height="200">
-                                        </a>
-                                    </div>
-                                    <p class="text-right">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${bookgoods.goodsid}">${bookgoods.goodsname}</a>
-                                    </p>
-                                    <div class="text-right">
-                                        <b>￥${bookgoods.price}</b>
-                                    </div>
-                                    <div>
-                                        <c:if test="${bookgoods.fav}">
-                                            <button
-                                                    class="like-button glyphicon glyphicon-heart btn btn-default"
-                                                    data-id="${bookgoods.goodsid}"
-                                                    style="display: none;"></button>
-                                        </c:if>
-                                        <c:if test="${!bookgoods.fav}">
-                                            <button
-                                                    class="like-button glyphicon glyphicon-heart-empty btn btn-default"
-                                                    data-id="${bookgoods.goodsid}"
-                                                    style="display: none;"></button>
-                                        </c:if>
-                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
-                                    </div>
-                                </li>
-                            </c:forEach>
+<%--                <div class="bd">--%>
+<%--                    <div class="data">--%>
+<%--                        <ul>--%>
+<%--                            <c:forEach items="${bookGoods}" var="bookgoods">--%>
+<%--                                <li class="data-item-li">--%>
+<%--                                    <div class="to-big">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${bookgoods.goodsid}"> <img--%>
+<%--                                                src="/shopimage/${bookgoods.imagePaths[0].path}" alt=""--%>
+<%--                                                width="200" height="200">--%>
+<%--                                        </a>--%>
+<%--                                    </div>--%>
+<%--                                    <p class="text-right">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${bookgoods.goodsid}">${bookgoods.goodsname}</a>--%>
+<%--                                    </p>--%>
+<%--                                    <div class="text-right">--%>
+<%--                                        <b>￥${bookgoods.price}</b>--%>
+<%--                                    </div>--%>
+<%--                                    <div>--%>
+<%--                                        <c:if test="${bookgoods.fav}">--%>
+<%--                                            <button--%>
+<%--                                                    class="like-button glyphicon glyphicon-heart btn btn-default"--%>
+<%--                                                    data-id="${bookgoods.goodsid}"--%>
+<%--                                                    style="display: none;"></button>--%>
+<%--                                        </c:if>--%>
+<%--                                        <c:if test="${!bookgoods.fav}">--%>
+<%--                                            <button--%>
+<%--                                                    class="like-button glyphicon glyphicon-heart-empty btn btn-default"--%>
+<%--                                                    data-id="${bookgoods.goodsid}"--%>
+<%--                                                    style="display: none;"></button>--%>
+<%--                                        </c:if>--%>
+<%--                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
+<%--                            </c:forEach>--%>
 
-                            <div class="clear-float" style="clear: both;"></div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </c:if>
+<%--                            <div class="clear-float" style="clear: both;"></div>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:if>--%>
     </div>
 </div>
 </body>

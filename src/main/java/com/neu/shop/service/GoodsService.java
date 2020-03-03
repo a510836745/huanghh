@@ -13,6 +13,8 @@ public interface GoodsService {
 
     public List<Goods> selectGoodsAndCateName(GoodsExample example);
 
+    public List<Goods> selectNewGoods();
+
     public void updateStateByGoodsId(Integer goodsid,String btnState);
 
     public void updateStatByCateId(Integer cateId,String btnState);

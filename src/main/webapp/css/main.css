@@ -149,6 +149,11 @@ p.text-right {
 	margin-bottom: 3px;
 	margin-top: 3px;
 	font-size: 20px;
+	width: 250px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
 }
 
 p.text-right>a {

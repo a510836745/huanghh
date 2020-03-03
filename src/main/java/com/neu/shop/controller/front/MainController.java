@@ -3,6 +3,7 @@ package com.neu.shop.controller.front;
 import com.neu.shop.pojo.*;
 import com.neu.shop.service.CateService;
 import com.neu.shop.service.GoodsService;
+import com.neu.shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,9 @@ public class MainController {
     @Autowired
     private GoodsService goodsService;
 
+    @Autowired
+    private OrderService orderService;
+
     @RequestMapping("/main")
     public String showAllGoods(Model model, HttpSession session) throws Exception{
 
@@ -43,51 +47,40 @@ public class MainController {
         List<Category> categoryList = cateService.findCategory();
         model.addAttribute("cList",categoryList);
         List<Goods> list = new ArrayList<>();
-        for(Category c : categoryList){
-             cId = c.getCateid();
-             cName = c.getCatename();
-             list = getCateGoods(cId,userid);
-             model.addAttribute(cName,list);
+//        for(Category c : categoryList){
+//             cId = c.getCateid();
+//             cName = c.getCatename();
+//             list = getCateGoods(cId,userid);
+//             model.addAttribute(cName,list);
+//        }
+        List<Goods> newGoodsAndImageList = new ArrayList<>();
+        List<Goods> newGoodsList = goodsService.selectNewGoods();
+        for (Goods goods : newGoodsList){
+            List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
+            goods.setImagePaths(imagePathList);
+            newGoodsAndImageList.add(goods);
         }
+        model.addAttribute("newGoodsList",newGoodsAndImageList);
 
-
-
-//        //数码分类
-//        List<Goods> digGoods = getCateGoods("数码", userid);
-//        model.addAttribute("digGoods", digGoods);
-//
-//        //家电
-//        List<Goods> houseGoods = getCateGoods("家电", userid);
-//        model.addAttribute("houseGoods", houseGoods);
-//
-//        //服饰
-//        List<Goods> colGoods = getCateGoods("服饰", userid);
-//        model.addAttribute("colGoods", colGoods);
-//
-//        //书籍
-//        List<Goods> bookGoods = getCateGoods("书籍", userid);
-//        model.addAttribute("bookGoods", bookGoods);
-
+        List<Goods> hotGoodsAndImageList = new ArrayList<>();
+        List<OrderItem> hotGoodsList = orderService.selectHotGoodsList();
+        for (OrderItem o : hotGoodsList){
+            Goods good = goodsService.selectById(o.getGoodsid());
+            List<ImagePath> imagePathList = goodsService.findImagePath(o.getGoodsid());
+            good.setImagePaths(imagePathList);
+            hotGoodsAndImageList.add(good);
+        }
+        model.addAttribute("hotGoodsAndImageList",hotGoodsAndImageList);
         return "main";
     }
 
     public List<Goods> getCateGoods(Integer cid , Integer userid)throws Exception{
-//        //查询分类
-//        CategoryExample digCategoryExample = new CategoryExample();
-//        digCategoryExample.or().andCatenameLike(cate);
-//        List<Category> digCategoryList = cateService.findCategory();
-//        System.out.println(digCategoryList);
-//        if (digCategoryList.size() == 0) {
-//            return null;
-//        }
 
 //        //查询属于刚查到的分类的商品
        GoodsExample digGoodsExample = new GoodsExample();
         List<Integer> digCateId = new ArrayList<Integer>();
         digCateId.add(cid);
-//        for (Category tmp:digCategoryList) {
-//            digCateId.add(tmp.getCateid());
-//        }
+
         digGoodsExample.or().andCategoryIn(digCateId);
 
         List<Goods> goodsList = goodsService.selectByExampleLimit(digGoodsExample);

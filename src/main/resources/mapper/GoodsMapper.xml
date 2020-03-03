@@ -153,6 +153,13 @@
     <include refid="Union_Column_List" />
     from goods INNER JOIN category ON goods.category = category.cateId
   </select>
+  <select id="selectNewGoods" parameterType="com.neu.shop.pojo.Goods" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods ORDER BY upTime desc limit 4
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goods
     where goodsId = #{goodsid,jdbcType=INTEGER}
