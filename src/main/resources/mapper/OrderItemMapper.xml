@@ -84,7 +84,9 @@
     </if>
   </select>
   <select id="selectHotGoodsList" parameterType="com.neu.shop.pojo.OrderItemExample" resultMap="BaseResultMap">
-    select goodsId, sum(num) as totalNum from orderitem GROUP BY goodsId ORDER BY totalNum DESC LIMIT 4;
+    select o.goodsId, sum(o.num) as totalNum from orderitem as o INNER JOIN goods as b ON o.goodsId=b.goodsId And b.state = '1'
+    GROUP BY o.goodsId
+    ORDER BY totalNum DESC LIMIT 4;
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

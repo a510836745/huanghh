@@ -153,8 +153,7 @@
                                     </table>
                                     <div class="wc-proceed-to-checkout">
                                         <%--<input type="submit" class="button_act button_act-tc confirm-orders" value="结算"/>--%>
-                                        <button id="confirm-orders"
-                                                class="button_act button_act-tc confirm-orders pull-right">结算
+                                        <button id="confirm-orders" class="button_act button_act-tc confirm-orders pull-right" >结算
                                         </button>
                                     </div>
                                 </div>

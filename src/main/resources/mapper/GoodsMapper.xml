@@ -103,6 +103,7 @@
     from goods
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
+      and state = '1'
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
@@ -158,7 +159,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from goods ORDER BY upTime desc limit 4
+    from goods where state = '1' ORDER BY upTime desc limit 4
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goods

@@ -14,6 +14,7 @@ $(document).ready(function () {
         var newPrice = $('#total-new').text();
         $.ajax({
             url: "/shop/orderFinish",
+            //url: "/shop/alipay/pay",
             type: "POST",
             data: {
                 oldPrice: oldPrice,
