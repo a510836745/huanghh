@@ -15,7 +15,9 @@ public class Comment {
 
     private Date commenttime;
 
-    private String username;
+    private String userName;
+
+    private String goodsName;
 
     public Integer getCommentid() {
         return commentid;
@@ -65,7 +67,19 @@ public class Comment {
         this.commenttime = commenttime;
     }
 
-    public void setUserName(String userName) {this.username=userName;}
+    public String getUserName() {
+        return userName;
+    }
 
-    public String getUsername() {return username;}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+    }
 }

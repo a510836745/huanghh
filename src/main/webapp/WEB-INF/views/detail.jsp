@@ -374,7 +374,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <p class="meta">
-                                                                        <strong>${comment.username}</strong>
+                                                                        <strong>${comment.userName}</strong>
                                                                         –
                                                                         <time datetime="${comment.commenttime}">
                                                                             ${comment.commenttime.year+1900}年

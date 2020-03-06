@@ -43,8 +43,6 @@
                     <ul class="text-uppercase">
                         <li><a href="${pageContext.request.contextPath}/admin/activity/show" class="active">所有活动</a></li>
                         <li><a href="${pageContext.request.contextPath}/admin/activity/add">添加活动</a></li>
-                        <%--<li><a href="${pageContext.request.contextPath}/admin/goods/addCategory">添加分类</a></li>--%>
-                        <%--<li><a href="login.html">。。。</a></li>--%>
                     </ul>
                 </nav>
             </div>
@@ -98,13 +96,13 @@
                 </div>
                 <ul class="pagination">
                     <li>
-                        <a href="${pageContext.request.contextPath}/admin/goods/show?page=1" aria-label="Next">
+                        <a href="${pageContext.request.contextPath}/admin/activity/show?page=1" aria-label="Next">
                             <span aria-hidden="true">首页</span>
                         </a>
                     </li>
                     <c:if test="${pageInfo.hasPreviousPage}">
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pageNum - 1}" aria-label="Previous">
+                            <a href="${pageContext.request.contextPath}/admin/activity/show?page=${pageInfo.pageNum - 1}" aria-label="Previous">
                                 <span aria-hidden="true"><i class="fa fa-backward"></i></span>
                             </a>
                         </li>
@@ -112,22 +110,22 @@
 
                     <c:forEach items="${pageInfo.navigatepageNums}" var="pageNums">
                         <c:if test="${pageNums == pageInfo.pageNum}">
-                            <li class="active"><a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageNums}">${pageNums}</a></li>
+                            <li class="active"><a href="${pageContext.request.contextPath}/admin/activity/show?page=${pageNums}">${pageNums}</a></li>
                         </c:if>
                         <c:if test="${pageNums != pageInfo.pageNum}">
-                            <li><a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageNums}">${pageNums}</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/activity/show?page=${pageNums}">${pageNums}</a></li>
                         </c:if>
                     </c:forEach>
 
                     <c:if test="${pageInfo.hasNextPage}">
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pageNum + 1}" aria-label="Next">
+                            <a href="${pageContext.request.contextPath}/admin/activity/show?page=${pageInfo.pageNum + 1}" aria-label="Next">
                                 <span aria-hidden="true"><i class="fa fa-forward"></i></span>
                             </a>
                         </li>
                     </c:if>
                     <li>
-                        <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pages}" aria-label="Next">
+                        <a href="${pageContext.request.contextPath}/admin/activity/show?page=${pageInfo.pages}" aria-label="Next">
                             <span aria-hidden="true">末页</span>
                         </a>
                     </li>

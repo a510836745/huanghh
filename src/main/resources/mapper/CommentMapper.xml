@@ -9,6 +9,16 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="commentTime" jdbcType="TIMESTAMP" property="commenttime" />
   </resultMap>
+  <resultMap id="UnionResultMap" type="com.neu.shop.pojo.Comment">
+    <id column="commentId" jdbcType="INTEGER" property="commentid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="goodsId" jdbcType="INTEGER" property="goodsid" />
+    <result column="point" jdbcType="INTEGER" property="point" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="commentTime" jdbcType="TIMESTAMP" property="commenttime" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsName" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -83,6 +93,9 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+  </select>
+  <select id="getCommentAndGoodsAndUser" parameterType="com.neu.shop.pojo.Comment" resultMap="UnionResultMap">
+    SELECT c.commentId,c.userId,c.goodsId,c.point,c.content,c.commentTime,g.goodsName,u.userName FROM `comment` as c INNER JOIN goods as g ON c.goodsId = g.goodsId INNER JOIN `user` as u ON c.userId = u.userId
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

@@ -28,4 +28,14 @@ public class CommentServiceImpl implements CommentService {
         return commentMapper.selectByExample(commentExample);
     }
 
+    @Override
+    public List<Comment> getCommentAndGoodsAndUser() {
+        return commentMapper.getCommentAndGoodsAndUser();
+    }
+
+    @Override
+    public int deleteComment(Integer commentId) {
+        return commentMapper.deleteByPrimaryKey(commentId);
+    }
+
 }
