@@ -45,6 +45,11 @@ public class CateServiceImpl implements CateService {
     }
 
     @Override
+    public void updateSaleNum(Integer cateId, Integer saleNum) {
+        categoryMapper.updateSaleNum(cateId,saleNum);
+    }
+
+    @Override
     public List<Category> findCategory() throws Exception {
         List<Category> list = categoryMapper.findCategory();
         if(list!=null && list.size()>0){

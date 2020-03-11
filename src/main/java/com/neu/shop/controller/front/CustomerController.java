@@ -34,8 +34,15 @@ public class CustomerController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private CateService cateService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private GoodsService goodsService;
 
     @RequestMapping("/register")
     public String register(){
@@ -171,12 +178,6 @@ public class CustomerController {
         addressService.insertSelective(address);
         return Msg.success("添加成功");
     }
-
-    @Autowired
-    private OrderService orderService;
-
-    @Autowired
-    private GoodsService goodsService;
 
     @RequestMapping("/info/list")
     public String list(HttpServletRequest request,Model orderModel){

@@ -20,6 +20,8 @@ public interface OrderItemMapper {
 
     List<OrderItem> selectHotGoodsList();
 
+    List<OrderItem> totalCateOrder();
+
     OrderItem selectByPrimaryKey(Integer itemid);
 
     int updateByExampleSelective(@Param("record") OrderItem record, @Param("example") OrderItemExample example);

@@ -59,7 +59,7 @@
                                 <tr>
                                     <td>${comment.commentid}</td>
                                     <td>${comment.userid}</td>
-                                    <td>${comment.username}</td>
+                                    <td>${comment.userName}</td>
                                     <td>${comment.goodsid}</td>
                                     <td>${comment.goodsName}</td>
                                     <td>${comment.point}</td>

@@ -7,6 +7,8 @@ public class Category {
 
     private String state;
 
+    private Integer saleNum;
+
     public String getState() {
         return state;
     }
@@ -29,5 +31,13 @@ public class Category {
 
     public void setCatename(String catename) {
         this.catename = catename == null ? null : catename.trim();
+    }
+
+    public Integer getSaleNum() {
+        return saleNum;
+    }
+
+    public void setSaleNum(Integer saleNum) {
+        this.saleNum = saleNum;
     }
 }

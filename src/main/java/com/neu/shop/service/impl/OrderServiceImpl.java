@@ -47,6 +47,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderItem> totalCateOrder() {
+        return orderItemMapper.totalCateOrder();
+    }
+
+    @Override
     public List<OrderItem> getOrderItemByExample(OrderItemExample orderItemExample) {
         return orderItemMapper.selectByExample(orderItemExample);
     }

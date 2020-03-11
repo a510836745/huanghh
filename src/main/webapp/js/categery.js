@@ -6,7 +6,7 @@ $(document).ready(function (){
        $("#update-cate").modal({
            backdrop:'static'
        });
-       $("#categoryName").val($(this).parent().prev().children().text());
+       $("#categoryName").val($(this).parent().prev().prev().prev().children().text());
        cateId=$(this).parent().prev().children().attr("cateId");
    });
 

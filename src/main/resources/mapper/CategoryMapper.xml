@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cateId, cateName, state
+    cateId, cateName, state, saleNum
   </sql>
   <select id="findCategory" resultMap="BaseResultMap">
 		select cateId,cateName from category
@@ -177,6 +177,11 @@
   <update id="updateByPrimaryKey" parameterType="com.neu.shop.pojo.Category">
     update category
     set state = #{btnState,jdbcType=VARCHAR}
+    where cateId = #{cateid,jdbcType=INTEGER}
+  </update>
+  <update id="updateSaleNum" parameterType="com.neu.shop.pojo.Category">
+    update category
+    set saleNum = #{saleNum,jdbcType=INTEGER}
     where cateId = #{cateid,jdbcType=INTEGER}
   </update>
 </mapper>

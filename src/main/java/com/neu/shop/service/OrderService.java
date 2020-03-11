@@ -17,6 +17,8 @@ public interface OrderService {
 
     public List<OrderItem> selectHotGoodsList();
 
+    public List<OrderItem> totalCateOrder();
+
     public List<OrderItem> getOrderItemByExample(OrderItemExample orderItemExample);
 
     public Address getAddressByKey(Integer addressid);

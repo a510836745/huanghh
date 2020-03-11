@@ -20,6 +20,8 @@ public interface CateService {
 
     public void updateByPrimaryKey(Integer cateid,String btnState);
 
+    public void updateSaleNum(Integer cateId,Integer saleNum);
+
     public List<Category> findCategory() throws Exception;
 
     public String findCateName(Integer cateId);
