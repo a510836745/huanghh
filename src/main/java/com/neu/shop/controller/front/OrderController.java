@@ -17,13 +17,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by 文辉 on 2017/7/25.
- */
+
 @Controller
 public class OrderController {
 
-    /*@Value("#{addressService}")*/
+
     @Autowired
     private AddressService addressService;
 
@@ -83,18 +81,43 @@ public class OrderController {
                 //活动信息
                 Activity activity = activityService.selectByKey(goods.getActivityid());
                 goods.setActivity(activity);
-
+                //优惠计算方式
+                float normalPrice = (float) (goods.getPrice()*goods.getPayNum());       //原价
+                float discountPrice;    //折扣后价格
+                float fullNumPrice;     //满免后价格
+                float fullMoneyPrice;   //满减后价格
                 if(activity.getDiscount() != 1) {
-                    goods.setNewPrice(goods.getPrice()*goods.getPayNum()* activity.getDiscount());
-                } else if(activity.getFullnum() != null) {
+                    discountPrice = (float)goods.getPrice()*goods.getPayNum()* activity.getDiscount();
+                    //goods.setNewPrice(goods.getPrice()*goods.getPayNum()* activity.getDiscount());
+                }else {
+                    discountPrice =normalPrice;
+                    //goods.setNewPrice((float) (goods.getPrice()*goods.getPayNum()));
+                }
+                if(activity.getFullnum() != null) {
                     if (goods.getPayNum() >= activity.getFullnum()) {
-                        goods.setNewPrice((float) (goods.getPrice()*(goods.getPayNum()-activity.getReducenum())));
+                        fullNumPrice = (float) (goods.getPrice()*(goods.getPayNum()-activity.getReducenum()));
+                        //goods.setNewPrice((float) (goods.getPrice()*(goods.getPayNum()-activity.getReducenum())));
                     } else {
-                        goods.setNewPrice((float) (goods.getPrice()*goods.getPayNum()));
+                        fullNumPrice = normalPrice;
+                       //goods.setNewPrice((float) (goods.getPrice()*goods.getPayNum()));
                     }
                 } else {
-                    goods.setNewPrice((float) (goods.getPrice()*goods.getPayNum()));
+                    fullNumPrice = normalPrice;
+                    //goods.setNewPrice((float) (goods.getPrice()*goods.getPayNum()));
                 }
+                if(activity.getFullprice() != null){
+                    if(normalPrice>activity.getFullprice()){
+                        fullMoneyPrice = normalPrice - activity.getReduceprice();
+                    }else {
+                        fullMoneyPrice = normalPrice;
+                    }
+                }else {
+                    fullMoneyPrice = normalPrice;
+                }
+                //判断三种优惠金额 取最小的
+                float minPrice = (discountPrice > fullNumPrice) ? fullNumPrice : discountPrice;
+                minPrice = (minPrice > fullMoneyPrice) ? fullMoneyPrice : minPrice;
+                goods.setNewPrice(minPrice);
                 totalPrice = totalPrice + goods.getNewPrice();
                 oldTotalPrice = oldTotalPrice + goods.getPayNum() * goods.getPrice();
                 goodsAndImage.add(goods);

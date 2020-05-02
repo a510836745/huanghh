@@ -59,7 +59,7 @@
             <div class="templatemo-content-widget white-bg">
                 <h2 class="margin-bottom-10">增加活动</h2>
                 <p>活动的一些基本信息</p>
-                <form action="${pageContext.request.contextPath}/admin/activity/addResult" class="templatemo-login-form" method="post">
+                <form id = "addActivityForm" action="${pageContext.request.contextPath}/admin/activity/addResult" class="templatemo-login-form" method="post">
                     <div class="row form-group">
                         <div class="col-lg-6 form-group">
                             <label class="control-label" for="inputWithSuccess">活动名称</label>
@@ -101,7 +101,7 @@
 
 
                     <div class="form-group text-right">
-                        <button type="submit" class="templatemo-blue-button">添加</button>
+                        <button type="button" class="templatemo-blue-button" onclick="addActivity()">添加</button>
                         <button type="reset" class="templatemo-white-button">重置</button>
                     </div>
                 </form>
@@ -114,6 +114,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js"></script>        <!-- jQuery -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-filestyle.min.js"></script>  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>        <!-- Templatemo Script -->
+<script src="${pageContext.request.contextPath}/js/goodsManage.js"></script>
 <c:if test="${!empty msg}">
     <script type="text/javascript">
         $(document).ready(function () {

@@ -18,9 +18,6 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by 文辉 on 2017/7/24.
- */
 @Controller
 public class FrontGoodsController {
 
@@ -200,7 +197,6 @@ public class FrontGoodsController {
 
         //查询数据
         GoodsExample goodsExample = new GoodsExample();
-//        goodsExample.or().andDetailcateLike("%" + cate + "%");
        goodsExample.or().andCategoryEqualTo(cateId);
 //        if (!cateId.isEmpty()) {
 //            goodsExample.or().andCategoryIn(cateId);

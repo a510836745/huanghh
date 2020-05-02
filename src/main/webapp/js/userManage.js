@@ -39,6 +39,32 @@ $(document).on("click",".templatemo-delete-btn",function () {
             });
         });
 });
+// $(document).on("click","#search",function () {
+//     var userName =document.getElementById("userSearch").value;
+//     var path = "/shop";
+//     var page = "1";
+//     $.ajax({
+//         url: path + "/admin/user/userSearch",
+//         data:{
+//             page:page,
+//             userName:userName,
+//         },
+//         type:"get",
+//         success: function (result) {
+//
+//             //解析显示
+//             build_user_table(path, result);
+//
+//             //页面信息
+//             build_page_info(path, result);
+//
+//             //分页
+//             build_page_nav(path, result);
+//
+//             currentPage = page;
+//         }
+//     })
+// });
 
 function to_page(path, page) {
     $.ajax({

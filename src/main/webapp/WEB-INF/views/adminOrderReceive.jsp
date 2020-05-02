@@ -132,7 +132,6 @@
                                                         <td>${goods.goodsname}</td>
                                                         <td>￥${goods.price}</td>
                                                         <td>${goods.num}</td>
-                                                            <%--<td>234&lt;%&ndash;${goods.detailcate}&ndash;%&gt;</td>--%>
                                                         <td><a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}" class="templatemo-link">详情</a></td>
                                                             <%--<td>
                                                                 <button href="" class="templatemo-edit-btn">编辑</button>

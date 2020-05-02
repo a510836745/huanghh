@@ -160,7 +160,40 @@ function addGoods() {
         }else {
         swal("商品信息不完整,添加失败")
     }
-
+}
+function addActivity() {
+    var addActivityForm = document.getElementById('addActivityForm');
+    var activityName = $("input[name='activityname']").val();
+    var discount = $("input[name='discount']").val();
+    var fullprice = $("input[name='fullprice']").val();
+    var reduceprice = $("input[name='reduceprice']").val();
+    var fullnum = $("input[name='fullnum']").val();
+    var reducenum = $("input[name='reducenum']").val();
+    if(activityName!=''&&discount!=''&&fullprice!=''&&reduceprice!=''&&fullnum!=''&&reducenum!=''){
+        if(discount>1){
+            swal("折扣输入错误,添加失败")
+        }else if(reduceprice>fullprice){
+            swal("满减金额大于满减标准金额,添加失败")
+        }else if(reducenum>fullnum){
+            swal("满免数量大于满免标准数量,添加失败")
+        } else {
+        swal({
+                title: "确定添加" + activityName + "吗？",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "取消",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定！",
+                closeOnConfirm: false,
+            },
+            function (){
+                addActivityForm.submit();
+                return true;
+            });
+        }
+    }else {
+        swal("活动信息不完整,添加失败")
+    }
 }
 /*$(document).on("click",".templatemo-activity-btn",function () {
     var goodsid = $(this).parents("tr").find("td:eq(0)").text();
