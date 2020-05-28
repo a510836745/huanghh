@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 蒋松冬
-  Date: 2017/7/26
-  Time: 10:16
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -132,40 +126,14 @@
             <span class="mdl-layout-title">订单管理</span>
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                <%-- <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                     <i class="material-icons">search</i>
-                 </label>
-                 <div class="mdl-textfield__expandable-holder">
-                     <input class="mdl-textfield__input" type="text" id="search">
-                     <label class="mdl-textfield__label" for="search">Enter your query...</label>
-                 </div>--%>
             </div>
-            <%-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-                 <i class="material-icons">more_vert</i>
-             </button>
-             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                 <li class="mdl-menu__item">About</li>
-                 <li class="mdl-menu__item">Contact</li>
-                 <li class="mdl-menu__item">Legal information</li>
-             </ul>--%>
         </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <header class="demo-drawer-header">
-            <%-- <img src="images/user.jpg" class="demo-avatar">--%>
             <div class="demo-avatar-dropdown">
-                <h1>淘一淘</h1>
-                <%-- <span>hello@example.com</span>--%>
+                <h1>泰购乐</h1>
                 <div class="mdl-layout-spacer"></div>
-                <%--<button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                    <i class="material-icons" role="presentation">arrow_drop_down</i>
-                    <span class="visuallyhidden">Accounts</span>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-                    <li class="mdl-menu__item">hello@example.com</li>
-                    <li class="mdl-menu__item">info@example.com</li>
-                    <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
-                </ul>--%>
             </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
@@ -291,19 +259,6 @@
                                                     ${order.address.city}
                                                     ${order.address.county}
                                             </td>
-                                            <%--<td class="no-border col-lg-7">
-                                                订单日期:
-                                                    ${order.ordertime.year+1900} 年
-                                                    ${order.ordertime.month+1} 月
-                                                    ${order.ordertime.date} 日
-                                                &nbsp;
-                                                &nbsp;
-                                                &nbsp;
-                                                收货地址:
-                                                    ${order.address.province}
-                                                    ${order.address.city}
-                                                    ${order.address.county}
-                                            </td>--%>
                                             <td  class="no-border col-lg-3">
                                                 原价:${order.oldprice}  现价:${order.newprice}
                                             </td>
@@ -386,19 +341,6 @@
                                                     ${order.address.city}
                                                     ${order.address.county}
                                             </td>
-                                           <%-- <td class="no-border col-lg-7">
-                                                订单日期:
-                                                    ${order.ordertime.year+1900} 年
-                                                    ${order.ordertime.month+1} 月
-                                                    ${order.ordertime.date} 日
-                                                &nbsp;
-                                                &nbsp;
-                                                &nbsp;
-                                                收货地址:
-                                                    ${order.address.province}
-                                                    ${order.address.city}
-                                                    ${order.address.county}
-                                            </td>--%>
                                             <td  class="no-border col-lg-3">
                                                原价:${order.oldprice}  现价:${order.newprice}
                                             </td>
@@ -430,10 +372,10 @@
                                         </tbody>
                                     </table>
                                     <c:forEach items="${order.goodsInfo}" var="good">
-                                    <table class="table table-bordered" cellpadding="6" cellspacing="1" ><%--商品信息--%>
+                                    <table class="table table-bordered" cellpadding="6" cellspacing="1" >
                                         <tbody>
                                         <tr>
-                                            <td class="col-lg-1">
+                                            <td name="RGoodsId" class="col-lg-1">
                                                     ${good.goodsid}
                                             </td>
                                             <td class="col-lg-2">
@@ -450,6 +392,9 @@
                                             </td>
                                             <td class="col-lg-1">
                                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="evaluate" ><h5>评价</h5></button>
+                                            </td>
+                                            <td class="col-lg-1">
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="refund" ><h5>退货请求</h5></button>
                                             </td>
                                         </tr>
                                         </tbody>

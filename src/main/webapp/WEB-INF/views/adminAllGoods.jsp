@@ -87,12 +87,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="detailcate" class="col-sm-2 control-label">详细分类</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="detailcate" name="detailcate">
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">

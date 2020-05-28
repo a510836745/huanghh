@@ -4,9 +4,7 @@ import com.neu.shop.pojo.*;
 
 import java.util.List;
 
-/**
- * Created by 文辉 on 2017/7/25.
- */
+
 public interface OrderService {
     public void insertOrder(Order order);
 

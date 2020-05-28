@@ -8,7 +8,6 @@
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="upTime" jdbcType="TIMESTAMP" property="uptime" />
     <result column="category" jdbcType="INTEGER" property="category" />
-    <result column="detailCate" jdbcType="VARCHAR" property="detailcate" />
     <result column="activityId" jdbcType="INTEGER" property="activityid" />
   </resultMap>
   <resultMap id="UnionResultMap" type="com.neu.shop.pojo.Goods">
@@ -18,7 +17,6 @@
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="upTime" jdbcType="TIMESTAMP" property="uptime" />
     <result column="category" jdbcType="INTEGER" property="category" />
-    <result column="detailCate" jdbcType="VARCHAR" property="detailcate" />
     <result column="activityId" jdbcType="INTEGER" property="activityid" />
     <result column="cateName" jdbcType="VARCHAR" property="cateName" />
   </resultMap>
@@ -84,7 +82,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    goodsId, goodsName, price, num, upTime, category, detailCate, activityId, state
+    goodsId, goodsName, price, num, upTime, category, activityId, state
   </sql>
   <sql id="Union_Column_List">
     goodsId, goodsName, price, num, upTime,category, activityId, goods.state, category.cateName
@@ -174,11 +172,11 @@
   <insert id="insert" parameterType="com.neu.shop.pojo.Goods">
     insert into goods (goodsId, goodsName, price, 
       num, upTime, category, 
-      detailCate, activityId, description
+    activityId, description
       )
     values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
       #{num,jdbcType=INTEGER}, #{uptime,jdbcType=TIMESTAMP}, #{category,jdbcType=INTEGER}, 
-      #{detailcate,jdbcType=VARCHAR}, #{activityid,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
+        #{activityid,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.neu.shop.pojo.Goods" useGeneratedKeys="true" keyProperty="goodsid">
@@ -201,9 +199,6 @@
       </if>
       <if test="category != null">
         category,
-      </if>
-      <if test="detailcate != null">
-        detailCate,
       </if>
       <if test="activityid != null">
         activityId,
@@ -230,9 +225,6 @@
       </if>
       <if test="category != null">
         #{category,jdbcType=INTEGER},
-      </if>
-      <if test="detailcate != null">
-        #{detailcate,jdbcType=VARCHAR},
       </if>
       <if test="activityid != null">
         #{activityid,jdbcType=INTEGER},
@@ -269,9 +261,6 @@
       <if test="record.category != null">
         category = #{record.category,jdbcType=INTEGER},
       </if>
-      <if test="record.detailcate != null">
-        detailCate = #{record.detailcate,jdbcType=VARCHAR},
-      </if>
       <if test="record.activityid != null">
         activityId = #{record.activityid,jdbcType=INTEGER},
       </if>
@@ -291,7 +280,6 @@
       num = #{record.num,jdbcType=INTEGER},
       upTime = #{record.uptime,jdbcType=TIMESTAMP},
       category = #{record.category,jdbcType=INTEGER},
-      detailCate = #{record.detailcate,jdbcType=VARCHAR},
       activityId = #{record.activityid,jdbcType=INTEGER},
       description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -306,7 +294,6 @@
       num = #{record.num,jdbcType=INTEGER},
       upTime = #{record.uptime,jdbcType=TIMESTAMP},
       category = #{record.category,jdbcType=INTEGER},
-      detailCate = #{record.detailcate,jdbcType=VARCHAR},
       activityId = #{record.activityid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -330,9 +317,6 @@
       <if test="category != null">
         category = #{category,jdbcType=INTEGER},
       </if>
-      <if test="detailcate != null">
-        detailCate = #{detailcate,jdbcType=VARCHAR},
-      </if>
       <if test="activityid != null">
         activityId = #{activityid,jdbcType=INTEGER},
       </if>
@@ -349,7 +333,6 @@
       num = #{num,jdbcType=INTEGER},
       upTime = #{uptime,jdbcType=TIMESTAMP},
       category = #{category,jdbcType=INTEGER},
-      detailCate = #{detailcate,jdbcType=VARCHAR},
       activityId = #{activityid,jdbcType=INTEGER},
       description = #{description,jdbcType=LONGVARCHAR}
     where goodsId = #{goodsid,jdbcType=INTEGER}
@@ -361,7 +344,6 @@
       num = #{num,jdbcType=INTEGER},
       upTime = #{uptime,jdbcType=TIMESTAMP},
       category = #{category,jdbcType=INTEGER},
-      detailCate = #{detailcate,jdbcType=VARCHAR},
       activityId = #{activityid,jdbcType=INTEGER}
     where goodsId = #{goodsid,jdbcType=INTEGER}
   </update>

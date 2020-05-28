@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>淘一淘-欢迎登录</title>
+<title>泰购乐-欢迎登录</title>
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
@@ -17,28 +17,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/login.js"></script>
 </head>
-<%--<script>
 
-	$(document).ready(function() {
-
-		
-		$(document).keypress(function(e) {
-			if (e.which == 13) {
-				e.preventDefault();
-				
-				$(".login-input").click();
-				//form.submit();
-			}
-		});
-		input_value();
-	})
-	
-	function input_value() {
-		if (UserID != "null") {
-			document.getElementById("inputEmail3").value = UserID;
-		}
-	}
-</script>--%>
 
 <script type="text/javascript">
 	function reloadcode() {

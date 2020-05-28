@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 文辉
-  Date: 2017/7/19
-  Time: 14:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -80,10 +73,7 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="col-lg-6 col-md-6 form-group">
-                            <label class="control-label" for="inputWithSuccess2">详细类别</label>
-                            <input type="text" class="form-control" id="inputWithSuccess2" name="detailcate">
-                        </div>
+
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-12">

@@ -28,9 +28,6 @@
     </div>
     <div class="col-md-8">
         <ul class="nav nav-pills pull-right">
-            <li><a href="${pageContext.request.contextPath}/chat"> <i
-                    class="fa fa-comment"></i> 消息
-            </a></li>
             <li><a href="${pageContext.request.contextPath}/showcart"> <i
                     class="fa fa-shopping-cart" style="color: #F22E00"></i>
                 购物车

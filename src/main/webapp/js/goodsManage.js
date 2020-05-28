@@ -24,14 +24,12 @@ $(document).on("click",".templatemo-edit-btn",function () {
     var upGoodsname = $(this).parents("tr").find("td:eq(1)").text();
     var upGoodsPrice = $(this).parents("tr").find("td:eq(2)").text();
     var upGoodsNum = $(this).parents("tr").find("td:eq(3)").text();
-    var upGoodsDetailCate = $(this).parents("tr").find("td:eq(4)").text();
     var upGoodsDes = $(this).parents("tr").find(".description").attr("data-content");
 
     $("#goodsid").text(upGoodsid);
     $("#goodsname").val(upGoodsname);
     $("#price").val(upGoodsPrice);
     $("#num").val(upGoodsNum);
-    $("#detailcate").val(upGoodsDetailCate);
     $("#description").val(upGoodsDes);
 });
 
@@ -43,8 +41,7 @@ $(document).on("click","#saveUpdate",function () {
     var unum = $("#num").val();
     var udescription = $("#description").val();
     var ucategory = $("#category").val();
-    var udetailcate = $("#detailcate").val();
-    if(ugoodsid!=''&&ugoodsname!=''&&uprice!=''&&unum!=''&&ucategory!=''&&udetailcate!=''){
+    if(ugoodsid!=''&&ugoodsname!=''&&uprice!=''&&unum!=''&&ucategory!=''){
         $.ajax({
             url:"/shop/admin/goods/update/",
             type:"POST",
@@ -55,7 +52,6 @@ $(document).on("click","#saveUpdate",function () {
                 num:unum,
                 description:udescription,
                 category:ucategory,
-                detailcate:udetailcate,
             },
             success:function(result){
                 $("#update-goods").modal('hide');
@@ -170,7 +166,7 @@ function addActivity() {
     var fullnum = $("input[name='fullnum']").val();
     var reducenum = $("input[name='reducenum']").val();
     if(activityName!=''&&discount!=''&&fullprice!=''&&reduceprice!=''&&fullnum!=''&&reducenum!=''){
-        if(discount>1){
+        if(discount > 1 || discount <= 0){
             swal("折扣输入错误,添加失败")
         }else if(reduceprice>fullprice){
             swal("满减金额大于满减标准金额,添加失败")
@@ -188,6 +184,7 @@ function addActivity() {
             },
             function (){
                 addActivityForm.submit();
+                swal("活动添加成功")
                 return true;
             });
         }
@@ -286,7 +283,6 @@ function build_goods_table(path,result) {
         var goodsname = $("<td></td>").append(item.goodsname);
         var price = $("<td></td>").append(item.price);
         var num = $("<td></td>").append(item.num);
-        // var detailcate = $("<td></td>").append(item.detailcate);
         var category = $("<td></td>").append(item.cateName);
         var activityid = $("<td></td>").append(item.activityid);
 

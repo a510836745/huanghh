@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Random;
 
-/**
- * Created by 蒋松冬 on 2017/7/22.
- */
+
 public class Verificate {
 
         // 验证码图片中可以出现的字符集，可根据需要修改

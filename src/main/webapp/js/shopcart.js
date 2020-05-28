@@ -53,7 +53,7 @@ function deleteCartGoods(goodsid) {
         url: "/shop/deleteCart/" + goodsid,
         type: "DELETE",
         success: function (result) {
-            // swal(result.msg, "","success");
+            swal(result.msg, "","success");
             showcart();
         },
         error:function () {

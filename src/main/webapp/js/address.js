@@ -15,37 +15,46 @@ $(document).ready(function (){
 
     $("#saveAddr").click(function (){
         var saveAddr={};
-        saveAddr.addressid=addresId;
-         saveAddr.province=$("#provinceUpdate").val();
-         saveAddr.city=$("#cityUpdate").val();
-         saveAddr.county=$("#countyUpdate").val();
-         saveAddr.detailaddr=$("#detailaddress").val();
-         saveAddr.conname=$("#name").val();
-         saveAddr.contel=$("#telephone").val();
 
+        var province=$("#provinceUpdate").val();
+        var city=$("#cityUpdate").val();
+        var county=$("#countyUpdate").val();
+        var detailaddr=$("#detailaddress").val();
+        var conname=$("#name").val();
+        var contel=$("#telephone").val();
+
+        saveAddr.addressid=addresId;
+         saveAddr.province=province;
+         saveAddr.city=city;
+         saveAddr.county=county;
+         saveAddr.detailaddr=detailaddr;
+         saveAddr.conname=conname;
+         saveAddr.contel=contel;
+    if(province != "" && city != "" && county != "" && detailaddr != "" && conname != "" && contel != "") {
         $.ajax({
             type: "POST",
             url: "/shop/saveAddr",
-            contentType:"application/x-www-form-urlencoded; charset=utf-8",
-            data:saveAddr,
-            dateType:"json",
-            success: function(result){
-                if (result.msg=="更新失败")
-                {
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: saveAddr,
+            dateType: "json",
+            success: function (result) {
+                if (result.msg == "更新失败") {
                     swal(result.msg);
-                }
-                else {
+                } else {
                     $("#update-info").modal('hide');
                     swal("修改成功", "", "success");
-                    $("button").click(function (){
+                    $("button").click(function () {
                         location.reload();
                     });
                 }
             },
-            error:function (){
+            error: function () {
                 alert("更新失败");
             }
         });
+        }else {
+        swal("修改地址信息不完整!");
+    }
     });
 
     $("[name='deleteAddr']").click(function (){
@@ -78,30 +87,41 @@ $(document).ready(function (){
 
     $("#insertAddr").click(function (){
         var insertAddr={};
-        insertAddr.addressid={};
-        insertAddr.userid={};
-       insertAddr.province=$("#provinceInsert").val();
-       insertAddr.city=$("#cityInsert").val();
-        insertAddr.county=$("#countyInsert").val();
-        insertAddr.detailaddr=$("#detailaddressInsert").val();
-        insertAddr.conname=$("#nameInsert").val();
-       insertAddr.contel=$("#telephoneInsert").val();
-       $.ajax({
-           type:"POST",
-           url:"/shop/insertAddr",
-           contentType:"application/x-www-form-urlencoded; charset=utf-8",
-           data:insertAddr,
-           dataType:"json",
-           success:function (result){
-               swal(result.msg);
-               $("button").click(function (){
-                   location.reload();
-               });
-           },
-           error:function (){
-               alert("添加失败");
-           }
-       });
+
+        var province=$("#provinceInsert").val();
+        var city=$("#cityInsert").val();
+        var county=$("#countyInsert").val();
+        var detailaddr=$("#detailaddressInsert").val();
+        var conname=$("#nameInsert").val();
+        var contel=$("#telephoneInsert").val();
+
+
+       insertAddr.province=province;
+       insertAddr.city=city;
+        insertAddr.county=county;
+        insertAddr.detailaddr=detailaddr;
+        insertAddr.conname=conname;
+       insertAddr.contel=contel;
+        if(province != "" && city != "" && county != "" && detailaddr != "" && conname != "" && contel != "") {
+            $.ajax({
+                type:"POST",
+                url:"/shop/insertAddr",
+                contentType:"application/x-www-form-urlencoded; charset=utf-8",
+                data:insertAddr,
+                dataType:"json",
+                success:function (result){
+                    swal(result.msg);
+                    $("button").click(function (){
+                        location.reload();
+                    });
+                },
+                error:function (){
+                    alert("添加失败");
+                }
+            });
+        }else {
+            swal("新增地址信息不完整!");
+        }
 
     });
 });

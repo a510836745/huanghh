@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 文辉
-  Date: 2017/7/24
-  Time: 11:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -382,9 +375,6 @@
                                                                             ${comment.commenttime.date}日
                                                                         </time>
                                                                         :
-                                                                        <a  href="${pageContext.request.contextPath}/chat?sendto=${comment.userid}" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                                                                            <i class="fa fa-commenting"></i>
-                                                                        </a>
                                                                     </p>
                                                                     <div class="description">
                                                                         <p>${comment.content}</p>

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 蒋松冬
-  Date: 2017/7/23
-  Time: 20:50
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@page import="java.security.interfaces.RSAKey"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");%>
@@ -16,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>淘一淘-个人注册</title>
+    <title>泰购乐-个人注册</title>
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">

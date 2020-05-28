@@ -18,8 +18,6 @@ public class Goods {
 
     private String  cateName;
 
-    private String detailcate;
-
     private Integer activityid;
 
     private String description;
@@ -100,14 +98,6 @@ public class Goods {
 
     public void setCategory(Integer category) {
         this.category = category;
-    }
-
-    public String getDetailcate() {
-        return detailcate;
-    }
-
-    public void setDetailcate(String detailcate) {
-        this.detailcate = detailcate == null ? null : detailcate.trim();
     }
 
     public Integer getActivityid() {

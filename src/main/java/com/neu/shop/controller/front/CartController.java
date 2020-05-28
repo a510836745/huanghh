@@ -34,17 +34,20 @@ public class CartController {
         //判断是否已经加入购物车
         ShopCart shopCart1 = shopCartService.selectCartByKey(new ShopCartKey(user.getUserid(), shopCart.getGoodsid()));
         if (shopCart1 != null) {
+            ShopCart shopCart2 = new ShopCart();
+            shopCart2.setUserid(user.getUserid());
+            shopCart2.setGoodsid(shopCart.getGoodsid());
+            shopCart2.setCatedate(new Date());
+            shopCart2.setGoodsnum(shopCart1.getGoodsnum()+shopCart.getGoodsnum());
+            shopCartService.updateCartByKey(shopCart2);
             return "redirect:/showcart";
         }
 
         //用户
         shopCart.setUserid(user.getUserid());
-
         //加入时间
         shopCart.setCatedate(new Date());
-
         shopCartService.addShopCart(shopCart);
-
         //返回到购物车页面
         return "redirect:/showcart";
     }
