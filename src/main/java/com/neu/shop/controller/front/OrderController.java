@@ -1,5 +1,7 @@
 package com.neu.shop.controller.front;
 
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
 import com.neu.shop.pojo.*;
 import com.neu.shop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -135,7 +140,7 @@ public class OrderController {
 
     @RequestMapping("/orderFinish")
     @ResponseBody
-    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, Integer addressid,HttpSession session) {
+    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, Integer addressid,HttpSession session,Model m) {
         User user = (User) session.getAttribute("user");
 
         //获取订单信息
@@ -143,7 +148,7 @@ public class OrderController {
         shopCartExample.or().andUseridEqualTo(user.getUserid());
         List<ShopCart> shopCart = shopCartService.selectByExample(shopCartExample);
         //把订单信息写入数据库
-        Order order = new Order(null, user.getUserid(),new Date(), oldPrice, newPrice, isPay, false, false, false, addressid,null,null);
+        Order order = new Order(null, user.getUserid(),new Date(), oldPrice, newPrice, isPay, false, false, false, addressid,null,null,false);
         orderService.insertOrder(order);
         //插入的订单号
         Integer orderId = order.getOrderid();
@@ -156,7 +161,7 @@ public class OrderController {
             int goodsNum = goods.getNum();
             if(goodsNum>=payNum){
                 //把订单项写入orderitem表中
-                orderService.insertOrderItem(new OrderItem(null, orderId, cart.getGoodsid(), cart.getGoodsnum()));
+                orderService.insertOrderItem(new OrderItem(null, orderId, cart.getGoodsid(), cart.getGoodsnum(),1));
 
                 //库存减少
                 int goodsNewNum = goodsNum - payNum;
@@ -173,7 +178,17 @@ public class OrderController {
                 continue;
             }
         }
+
         return Msg.success("购买成功");
     }
+
+    @RequestMapping("/goPay")
+    public String goPay(String userid,Model m){
+        int uid = Integer.parseInt(userid);
+        Order order = orderService.getOrderNow(uid);
+        m.addAttribute("order",order);
+        return "alipay";
+    }
+
 
 }

@@ -73,4 +73,14 @@ public class OrderServiceImpl implements OrderService {
     public void insertOrderItem(OrderItem orderItem) {
         orderItemMapper.insertSelective(orderItem);
     }
+
+    @Override
+    public Order getOrderNow(Integer userId) {
+        return orderMapper.getOrderNow(userId);
+    }
+
+    @Override
+    public int requestRefund(Integer orderId, Integer goodsId) {
+        return orderItemMapper.requestRefund(orderId,goodsId);
+    }
 }

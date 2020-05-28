@@ -9,6 +9,8 @@ public class OrderItem {
 
     private Integer num;
 
+    private Integer isRefund;
+
     private Integer totalNum;
 
     private Integer category;
@@ -16,12 +18,13 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(Integer itemid, Integer orderid, Integer goodsid, Integer num) {
+    public OrderItem(Integer itemid, Integer orderid, Integer goodsid, Integer num, Integer isRefund) {
 
         this.itemid = itemid;
         this.orderid = orderid;
         this.goodsid = goodsid;
         this.num = num;
+        this.isRefund = isRefund;
     }
 
     public Integer getItemid() {
@@ -70,5 +73,13 @@ public class OrderItem {
 
     public void setCategory(Integer category) {
         this.category = category;
+    }
+
+    public Integer getIsRefund() {
+        return isRefund;
+    }
+
+    public void setIsRefund(Integer isRefund) {
+        this.isRefund = isRefund;
     }
 }

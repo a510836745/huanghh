@@ -9,6 +9,7 @@ $(document).ready(function () {
         var isPay = $('#pay-select').val();
         var oldPrice = $('#total-old').text();
         var newPrice = $('#total-new').text();
+        var userid = $('#user').val();
         $.ajax({
             url: "/shop/orderFinish",
             //url: "/shop/alipay/pay",
@@ -21,7 +22,7 @@ $(document).ready(function () {
             },
             success: function () {
                 swal("购买成功", "", "success");
-                location.href = "/shop/info/list"
+                location.href = "/shop/goPay?userid="+userid;
             },
             error: function () {
                 swal("购买失败，无法连接到服务器！");

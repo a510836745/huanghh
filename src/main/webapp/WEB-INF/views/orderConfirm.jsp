@@ -55,7 +55,7 @@
             <div class="all_wis_frm">
                 <div class="col-md-12">
                     <div class="wishlist-content wishlist-content-2">
-
+                        <input hidden="hidden" id="user" value="${user.userid }">
                         <div class="wishlist-table wishlist-table-2 table-responsive">
                             <table id="cart-table">
                                 <thead>

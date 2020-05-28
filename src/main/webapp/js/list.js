@@ -75,11 +75,32 @@ $(document).ready(function (){
                 swal(result.msg);
             },
             error:function (){
-                alert("评论失败");
+                swal("评论失败");
             }
         });
-
-
     })
 
+    $("[name='refund']").click(function (){
+        var orderId = $(this).parents("[name='parent']").find("[name='orderid']").text();
+        var goodsId=$(this).parents(".table-bordered").find(".col-lg-1").eq(0).text();
+        var refundInfo={};
+        refundInfo.orderId = orderId;
+        refundInfo.goodsId = goodsId;
+        $.ajax({
+            type:"POST",
+            url:"/shop/refundGoods",
+            contentType:"application/x-www-form-urlencoded; charset=utf-8",
+            data:refundInfo,
+            dataType:"json",
+            success:function (result){
+                swal(result.msg);
+                $("button").click(function (){
+                    location.reload();
+                });
+            },
+            error:function (){
+                swal("退货失败");
+            }
+        });
+    })
 });

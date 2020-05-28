@@ -599,7 +599,10 @@ public class OrderExample {
             addCriterion("isComplete =", value, "iscomplete");
             return (Criteria) this;
         }
-
+        public Criteria andIsRefundEqualTo(Boolean value) {
+            addCriterion("isRefund =", value, "isrefund");
+            return (Criteria) this;
+        }
         public Criteria andIscompleteNotEqualTo(Boolean value) {
             addCriterion("isComplete <>", value, "iscomplete");
             return (Criteria) this;

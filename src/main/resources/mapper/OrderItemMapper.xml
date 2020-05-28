@@ -6,6 +6,7 @@
     <result column="orderId" jdbcType="INTEGER" property="orderid" />
     <result column="goodsId" jdbcType="INTEGER" property="goodsid" />
     <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="isRefund" jdbcType="INTEGER" property="isRefund" />
     <result column="totalNum" jdbcType="INTEGER" property="totalNum" />
     <result column="category" jdbcType="INTEGER" property="category" />
   </resultMap>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    itemId, orderId, goodsId, num
+    itemId, orderId, goodsId, num, isRefund
   </sql>
   <select id="selectByExample" parameterType="com.neu.shop.pojo.OrderItemExample" resultMap="BaseResultMap">
     select
@@ -195,6 +196,9 @@
       <if test="num != null">
         num = #{num,jdbcType=INTEGER},
       </if>
+      <if test="isrefund != null">
+        isRerund = #{isrefund,jdbcType=INTEGER},
+      </if>
     </set>
     where itemId = #{itemid,jdbcType=INTEGER}
   </update>
@@ -204,5 +208,10 @@
       goodsId = #{goodsid,jdbcType=INTEGER},
       num = #{num,jdbcType=INTEGER}
     where itemId = #{itemid,jdbcType=INTEGER}
+  </update>
+  <update id="requestRefund" parameterType="com.neu.shop.pojo.OrderItem">
+    update orderitem
+    set isRefund = '2'
+    where orderId = #{orderid,jdbcType=INTEGER} and goodsId = #{goodsid,jdbcType=INTEGER}
   </update>
 </mapper>

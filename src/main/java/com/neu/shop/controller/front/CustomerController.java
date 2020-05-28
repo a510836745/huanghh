@@ -11,6 +11,7 @@ import com.neu.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -190,7 +191,7 @@ public class CustomerController {
         }
 
         OrderExample orderExample=new OrderExample();
-       orderExample.or().andUseridEqualTo(user.getUserid());
+        orderExample.or().andUseridEqualTo(user.getUserid());
         List<Order> orderList=orderService.selectOrderByExample(orderExample);
         orderModel.addAttribute("orderList",orderList);
         Order order;
@@ -207,12 +208,10 @@ public class CustomerController {
            //根据订单Id 查到
            orderItemList=orderService.getOrderItemByExample(orderItemExample);
            List<Goods> goodsList=new ArrayList<>();
-           List<Integer> goodsIdList=new ArrayList<>();
            GoodsExample goodsExample=new GoodsExample();
            for (Integer j=0;j<orderItemList.size();j++)
            {
                orderItem=orderItemList.get(j);
-               goodsIdList.add(orderItem.getGoodsid());
                int payNum = orderItem.getNum();
                int goodsId = orderItem.getGoodsid();
                goodsExample.or().andGoodsidEqualTo(goodsId);
@@ -220,11 +219,12 @@ public class CustomerController {
                String cateName = cateService.findCateName(goods.getCategory());
                goods.setPayNum(payNum);
                goods.setCateName(cateName);
+               goods.setIsRefund(orderItem.getIsRefund());
                goodsList.add(goods);
+
            }
 
-           //goodsExample.or().andGoodsidIn(goodsIdList);
-           //goodsList=goodsService.selectByExample(goodsExample);
+
            order.setGoodsInfo(goodsList);
            address=addressService.selectByPrimaryKey(order.getAddressid());
            order.setAddress(address);
@@ -315,7 +315,18 @@ public class CustomerController {
         orderService.updateOrderByKey(order);
         return Msg.success("确认收货成功");
     }
-
+    /*
+    用户请求退货
+     */
+    @RequestMapping("refundGoods")
+    @ResponseBody
+    public Msg refundGoods(Integer orderId, Integer goodsId){
+        Order order=orderService.selectByPrimaryKey(orderId);
+        order.setIsrefund(true);
+        orderService.updateOrderByKey(order);
+        orderService.requestRefund(orderId,goodsId);
+        return Msg.success("退货请求成功");
+    }
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request){
         HttpSession session=request.getSession();

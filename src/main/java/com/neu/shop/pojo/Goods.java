@@ -34,6 +34,16 @@ public class Goods {
 
     private String canPay;
 
+    private Integer isRefund;
+
+    public Integer getIsRefund() {
+        return isRefund;
+    }
+
+    public void setIsRefund(Integer isRefund) {
+        this.isRefund = isRefund;
+    }
+
     public String getCateName() {
         return cateName;
     }

@@ -35,17 +35,16 @@
             <div id="mycarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="${pageContext.request.contextPath}/image/4.jpg" alt="">
-                    </div>
-
-                    <div class="item">
                         <img src="${pageContext.request.contextPath}/image/3.jpg" alt="">
                     </div>
                     <div class="item">
                         <img src="${pageContext.request.contextPath}/image/5.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img src="${pageContext.request.contextPath}/image/6.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/image/444.jpg" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="${pageContext.request.contextPath}/image/666.jpg" alt="">
                     </div>
                 </div>
 

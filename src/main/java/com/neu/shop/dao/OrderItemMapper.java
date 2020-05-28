@@ -4,6 +4,7 @@ import com.neu.shop.pojo.OrderItem;
 import com.neu.shop.pojo.OrderItemExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface OrderItemMapper {
     long countByExample(OrderItemExample example);
@@ -31,4 +32,6 @@ public interface OrderItemMapper {
     int updateByPrimaryKeySelective(OrderItem record);
 
     int updateByPrimaryKey(OrderItem record);
+
+    int requestRefund(@Param("orderid")Integer orderid, @Param("goodsid")Integer goodsid);
 }

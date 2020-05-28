@@ -26,4 +26,8 @@ public interface OrderService {
     public Order selectByPrimaryKey(Integer orderid);
 
     void insertOrderItem(OrderItem orderItem);
+
+    public Order getOrderNow(Integer userId);
+
+    public int requestRefund(Integer orderId,Integer goodsId);
 }

@@ -24,6 +24,16 @@ public class Order {
 
     private Integer addressid;
 
+    private Boolean isrefund;
+
+    public Boolean getIsrefund() {
+        return isrefund;
+    }
+
+    public void setIsrefund(Boolean isrefund) {
+        this.isrefund = isrefund;
+    }
+
     private List<Goods> goodsInfo;
 
     public Order() {
@@ -31,7 +41,7 @@ public class Order {
 
     private Address address;
 
-    public Order(Integer orderid, Integer userid, Date ordertime, Float oldprice, Float newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, Integer addressid, List<Goods> goodsInfo, Address address) {
+    public Order(Integer orderid, Integer userid, Date ordertime, Float oldprice, Float newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, Integer addressid, List<Goods> goodsInfo, Address address,Boolean isRefund) {
         this.orderid = orderid;
         this.userid = userid;
         this.ordertime = ordertime;
@@ -44,6 +54,7 @@ public class Order {
         this.addressid = addressid;
         this.goodsInfo = goodsInfo;
         this.address = address;
+        this.isrefund = isRefund;
     }
 
     public Integer getOrderid() {

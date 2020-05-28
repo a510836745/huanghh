@@ -316,8 +316,8 @@
                             </div>
                         </c:if>
                     </c:forEach>
-
                 </div>
+
                 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                     <h3>已完成</h3><%--已完成--%>
                     <c:forEach items="${orderList}" var="order">
@@ -375,7 +375,7 @@
                                     <table class="table table-bordered" cellpadding="6" cellspacing="1" >
                                         <tbody>
                                         <tr>
-                                            <td name="RGoodsId" class="col-lg-1">
+                                            <td class="col-lg-1">
                                                     ${good.goodsid}
                                             </td>
                                             <td class="col-lg-2">
@@ -403,6 +403,105 @@
                                 </div>
                                 <div class="mdl-card__actions mdl-card--border">
                                     <button class="templatemo-blue-button finish-btn" name="deleteList"><h5>删除订单</h5></button>
+                                </div>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
+                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                    <h3>退货订单</h3>
+                    <c:forEach items="${orderList}" var="order">
+                        <c:if test="${order.isrefund}">
+                            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
+                                <div class="tab-content col-lg-12">
+                                    <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
+                                        <tbody>
+                                        <tr>
+                                            <td class="no-border col-lg-9" >
+                                                订单号：<i name="orderid">${order.orderid}</i>
+                                                &nbsp;
+                                                &nbsp;
+                                                订单日期:
+                                                    ${order.ordertime.year+1900} 年
+                                                    ${order.ordertime.month+1} 月
+                                                    ${order.ordertime.date} 日
+                                                &nbsp;
+                                                收货地址:
+                                                    ${order.address.province}
+                                                    ${order.address.city}
+                                                    ${order.address.county}
+                                            </td>
+                                            <td  class="no-border col-lg-3">
+                                                原价:${order.oldprice}  现价:${order.newprice}
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table " cellpadding="6" cellspacing="1" ><%--商品描述--%>
+                                        <tbody>
+                                        <tr>
+                                            <td class="col-lg-1">
+                                                商品号
+                                            </td>
+                                            <td class="col-lg-2">
+                                                商品名称
+                                            </td>
+                                            <td class="col-lg-1">
+                                                价格
+                                            </td>
+                                            <td class="col-lg-1">
+                                                数量
+                                            </td>
+                                            <td class="col-lg-2">
+                                                商品分类
+                                            </td>
+                                            <td class="col-lg-1">
+
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <c:forEach items="${order.goodsInfo}" var="good">
+                                        <table class="table table-bordered" cellpadding="6" cellspacing="1" >
+                                            <tbody>
+                                            <tr>
+                                                <td class="col-lg-1">
+                                                        ${good.goodsid}
+                                                </td>
+                                                <td class="col-lg-2">
+                                                    <a href="${pageContext.request.contextPath}/detail?goodsid=${good.goodsid}">${good.goodsname}</a>
+                                                </td>
+                                                <td class="col-lg-1">
+                                                        ${good.price}
+                                                </td>
+                                                <td class="col-lg-1">
+                                                        ${good.payNum}
+                                                </td>
+                                                <td class="col-lg-2">
+                                                        ${good.cateName}
+                                                </td>
+                                                <td class="col-lg-1">
+                                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="evaluate" ><h5>评价</h5></button>
+                                                </td>
+                                                <c:if test="${good.isRefund == 1}">
+                                                <td class="col-lg-1">
+                                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="refund" ><h5>退货请求</h5></button>
+                                                </td>
+                                                </c:if>
+                                                <c:if test="${good.isRefund == 2}">
+                                                    <td class="col-lg-1">
+                                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="2" ><h5>退货中</h5></button>
+                                                    </td>
+                                                </c:if>
+                                                <c:if test="${good.isRefund == 3}">
+                                                    <td class="col-lg-1">
+                                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="3" ><h5>已退货</h5></button>
+                                                    </td>
+                                                </c:if>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </c:if>
