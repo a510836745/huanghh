@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.neu.shop.pojo.Goods">
     <id column="goodsId" jdbcType="INTEGER" property="goodsid" />
     <result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
-    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="price" jdbcType="REAL" property="price" />
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="upTime" jdbcType="TIMESTAMP" property="uptime" />
     <result column="category" jdbcType="INTEGER" property="category" />
@@ -13,7 +13,7 @@
   <resultMap id="UnionResultMap" type="com.neu.shop.pojo.Goods">
     <id column="goodsId" jdbcType="INTEGER" property="goodsid" />
     <result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
-    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="price" jdbcType="REAL" property="price" />
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="upTime" jdbcType="TIMESTAMP" property="uptime" />
     <result column="category" jdbcType="INTEGER" property="category" />
@@ -157,7 +157,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from goods where state = '1' ORDER BY upTime desc limit 4
+    from goods where state = '1' ORDER BY upTime desc limit 12
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goods
@@ -174,7 +174,7 @@
       num, upTime, category, 
     activityId, description
       )
-    values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+    values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{price,jdbcType=REAL},
       #{num,jdbcType=INTEGER}, #{uptime,jdbcType=TIMESTAMP}, #{category,jdbcType=INTEGER}, 
         #{activityid,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
       )
@@ -215,7 +215,7 @@
         #{goodsname,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        #{price,jdbcType=INTEGER},
+        #{price,jdbcType=REAL},
       </if>
       <if test="num != null">
         #{num,jdbcType=INTEGER},
@@ -250,7 +250,7 @@
         goodsName = #{record.goodsname,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null">
-        price = #{record.price,jdbcType=INTEGER},
+        price = #{record.price,jdbcType=REAL},
       </if>
       <if test="record.num != null">
         num = #{record.num,jdbcType=INTEGER},
@@ -276,7 +276,7 @@
     update goods
     set goodsId = #{record.goodsid,jdbcType=INTEGER},
       goodsName = #{record.goodsname,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL},
       num = #{record.num,jdbcType=INTEGER},
       upTime = #{record.uptime,jdbcType=TIMESTAMP},
       category = #{record.category,jdbcType=INTEGER},
@@ -290,7 +290,7 @@
     update goods
     set goodsId = #{record.goodsid,jdbcType=INTEGER},
       goodsName = #{record.goodsname,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL},
       num = #{record.num,jdbcType=INTEGER},
       upTime = #{record.uptime,jdbcType=TIMESTAMP},
       category = #{record.category,jdbcType=INTEGER},
@@ -306,7 +306,7 @@
         goodsName = #{goodsname,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=INTEGER},
+        price = #{price,jdbcType=REAL},
       </if>
       <if test="num != null">
         num = #{num,jdbcType=INTEGER},
@@ -329,7 +329,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.neu.shop.pojo.Goods">
     update goods
     set goodsName = #{goodsname,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
       num = #{num,jdbcType=INTEGER},
       upTime = #{uptime,jdbcType=TIMESTAMP},
       category = #{category,jdbcType=INTEGER},
@@ -340,7 +340,7 @@
   <update id="updateByPrimaryKey" parameterType="com.neu.shop.pojo.Goods">
     update goods
     set goodsName = #{goodsname,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
       num = #{num,jdbcType=INTEGER},
       upTime = #{uptime,jdbcType=TIMESTAMP},
       category = #{category,jdbcType=INTEGER},

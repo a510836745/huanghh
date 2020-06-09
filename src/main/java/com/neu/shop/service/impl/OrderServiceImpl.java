@@ -83,4 +83,9 @@ public class OrderServiceImpl implements OrderService {
     public int requestRefund(Integer orderId, Integer goodsId) {
         return orderItemMapper.requestRefund(orderId,goodsId);
     }
+
+    @Override
+    public int confirmRefund(Integer orderId, Integer goodsId) {
+        return orderItemMapper.confirmRefund(orderId,goodsId);
+    }
 }

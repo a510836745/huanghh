@@ -8,7 +8,7 @@ public class Goods {
 
     private String goodsname;
 
-    private Integer price;
+    private Float price;
 
     private Integer num;
 
@@ -78,11 +78,11 @@ public class Goods {
         this.goodsname = goodsname == null ? null : goodsname.trim();
     }
 
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

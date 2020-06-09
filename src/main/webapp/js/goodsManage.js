@@ -83,7 +83,6 @@ $(document).on("click",".templatemo-delete-btn",function () {
                 closeOnConfirm: false,
             },
             function () {
-                /*swal("删除！", "你的虚拟文件已经被删除。", "success");*/
                 $.ajax({
                     url: "/shop/admin/goods/delete/" + goodsid + "/"+btnState,
                     type: "DELETE",
@@ -168,9 +167,9 @@ function addActivity() {
     if(activityName!=''&&discount!=''&&fullprice!=''&&reduceprice!=''&&fullnum!=''&&reducenum!=''){
         if(discount > 1 || discount <= 0){
             swal("折扣输入错误,添加失败")
-        }else if(reduceprice>fullprice){
+        }else if(parseInt(reduceprice)>=parseInt(fullprice)){
             swal("满减金额大于满减标准金额,添加失败")
-        }else if(reducenum>fullnum){
+        }else if(parseInt(reducenum)>=parseInt(fullnum)){
             swal("满免数量大于满免标准数量,添加失败")
         } else {
         swal({

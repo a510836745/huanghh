@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,7 +71,7 @@ public class OrderController {
         List<Goods> goodsAndImage = new ArrayList<>();
 
         Float totalPrice = new Float(0);
-        Integer oldTotalPrice = 0;
+        float oldTotalPrice = 0;
 
         for (ShopCart cart:shopCart) {
             Goods goods = goodsService.selectById(cart.getGoodsid());
@@ -140,7 +141,7 @@ public class OrderController {
 
     @RequestMapping("/orderFinish")
     @ResponseBody
-    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, Integer addressid,HttpSession session,Model m) {
+    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, Integer addressid,HttpSession session,Model m,HttpServletResponse response,HttpServletRequest request) throws Exception {
         User user = (User) session.getAttribute("user");
 
         //获取订单信息
@@ -178,17 +179,15 @@ public class OrderController {
                 continue;
             }
         }
-
+        //在线支付
+        if(isPay){
+            Map inParam = new HashMap();
+            inParam.put("orderId",String.valueOf(orderId));
+            inParam.put("newPrice",String.valueOf(newPrice));
+            inParam.put("itemName","泰购乐宠物商城");
+            AliPayDemo.jumpToAliPay(request,response,inParam);
+        }
         return Msg.success("购买成功");
     }
-
-    @RequestMapping("/goPay")
-    public String goPay(String userid,Model m){
-        int uid = Integer.parseInt(userid);
-        Order order = orderService.getOrderNow(uid);
-        m.addAttribute("order",order);
-        return "alipay";
-    }
-
 
 }

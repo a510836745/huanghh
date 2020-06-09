@@ -214,4 +214,9 @@
     set isRefund = '2'
     where orderId = #{orderid,jdbcType=INTEGER} and goodsId = #{goodsid,jdbcType=INTEGER}
   </update>
+  <update id="confirmRefund" parameterType="com.neu.shop.pojo.OrderItem">
+    update orderitem
+    set isRefund = '3'
+    where orderId = #{orderid,jdbcType=INTEGER} and goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
 </mapper>

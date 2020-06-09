@@ -255,12 +255,12 @@ public class CustomerController {
             return "redirect:/login";
         }
 
-        //一页显示几个数据
-        PageHelper.startPage(pn, 16);
-
         FavoriteExample favoriteExample = new FavoriteExample();
         favoriteExample.or().andUseridEqualTo(user.getUserid());
         List<Favorite> favoriteList = goodsService.selectFavByExample(favoriteExample);
+
+        //一页显示几个数据
+        PageHelper.startPage(pn, 6);
 
         List<Integer> goodsIdList = new ArrayList<Integer>();
         for (Favorite tmp:favoriteList) {

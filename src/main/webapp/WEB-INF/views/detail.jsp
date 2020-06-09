@@ -267,12 +267,6 @@
                     <%--<div class="new_meta"></div>--%>
 
                     <div class="rel-div">
-                        <div class="add_defi new_meta">
-                            <a id="chatto" href="${pageContext.request.contextPath}/chat?sendto=5" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                                <i class="fa fa-commenting"></i>
-                                联系客服
-                            </a>
-                        </div>
                         <form class="cart-btn-area new_meta" action="${pageContext.request.contextPath}/addCart" method="post">
                             <input type="hidden" value="${goodsInfo['goods'].goodsid}" name="goodsid"/>
                             <input type="number" value="1" name="goodsnum">

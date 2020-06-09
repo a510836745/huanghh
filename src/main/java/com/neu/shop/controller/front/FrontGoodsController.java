@@ -179,9 +179,6 @@ public class FrontGoodsController {
     public String getCateGoods(String cate, @RequestParam(value = "page",defaultValue = "1") Integer pn, Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
 
-        //一页显示几个数据
-        PageHelper.startPage(pn, 16);
-
         //查询分类id
         CategoryExample categoryExample = new CategoryExample();
         categoryExample.or().andCatenameLike(cate);
@@ -194,13 +191,11 @@ public class FrontGoodsController {
 //            cateId.add(category.getCateid());
             cateId = category.getCateid();
         }
-
+        //一页显示几个数据
+        PageHelper.startPage(pn, 8);
         //查询数据
         GoodsExample goodsExample = new GoodsExample();
-       goodsExample.or().andCategoryEqualTo(cateId);
-//        if (!cateId.isEmpty()) {
-//            goodsExample.or().andCategoryIn(cateId);
-//        }
+        goodsExample.or().andCategoryEqualTo(cateId);
         List<Goods> goodsList = goodsService.selectByExample(goodsExample);
 
         //获取图片地址

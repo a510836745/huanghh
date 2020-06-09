@@ -321,7 +321,7 @@
                 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                     <h3>已完成</h3><%--已完成--%>
                     <c:forEach items="${orderList}" var="order">
-                        <c:if test="${order.iscomplete}">
+                        <c:if test="${order.iscomplete&&!order.isrefund}">
                             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
                                 <div class="tab-content col-lg-12">
                                     <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>

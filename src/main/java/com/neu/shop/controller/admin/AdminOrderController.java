@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -91,7 +93,24 @@ public class AdminOrderController {
         orderService.updateOrderByKey(order);
         return "redirect:/admin/order/send";
     }
-
+    @RequestMapping(value = "/confirmRefund",method = RequestMethod.POST)
+    @ResponseBody
+    public String confirmRefund(@RequestParam Integer orderid,@RequestParam Integer goodsid){
+        orderService.confirmRefund(orderid,goodsid);
+        //库存回调
+        Goods goods = goodsService.selectById(goodsid);
+        int goodsNum = goods.getNum();
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.or().andOrderidEqualTo(orderid).andGoodsidEqualTo(goodsid);
+        List<OrderItem> orderItemList = orderService.getOrderItemByExample(orderItemExample);
+        int payNum = 0;
+        for(OrderItem o : orderItemList){
+            payNum = o.getNum();
+        }
+        int goodsNewNum = goodsNum + payNum;
+        goodsService.updateGoodsNum(goodsid,goodsNewNum);
+        return "redirect:/admin/order/refund";
+    }
     @RequestMapping("/receiver")
     public String receiveOrder(@RequestParam(value = "page",defaultValue = "1")Integer pn, Model model,HttpSession session) {
         Admin admin = (Admin) session.getAttribute("admin");
@@ -231,6 +250,7 @@ public class AdminOrderController {
 //                goodsIdList.add(orderItem.getGoodsid());
                 Goods goods = goodsService.selectById(orderItem.getGoodsid());
                 goods.setNum(orderItem.getNum());
+                goods.setIsRefund(orderItem.getIsRefund());
                 goodsList.add(goods);
             }
 
@@ -250,6 +270,6 @@ public class AdminOrderController {
         //显示几个页号
         PageInfo page = new PageInfo(orderList, 5);
         model.addAttribute("pageInfo", page);
-        return "adminOrderComplete";
+        return "adminOrderRefund";
     }
 }

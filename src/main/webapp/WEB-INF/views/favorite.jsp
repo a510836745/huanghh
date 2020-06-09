@@ -130,7 +130,7 @@
         <header class="demo-drawer-header">
             <%-- <img src="images/user.jpg" class="demo-avatar">--%>
             <div class="demo-avatar-dropdown">
-                <h1>淘一淘</h1>
+                <h1>泰购乐</h1>
                 <div class="mdl-layout-spacer"></div>
 
             </div>
@@ -188,7 +188,7 @@
 
                                         <c:if test="${pageInfo.hasPreviousPage}">
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/search?keyword=${keyword}&page=${pageInfo.prePage}" aria-label="Previous">
+                                                <a href="${pageContext.request.contextPath}/info/favorite?page=${pageInfo.prePage}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                 </a>
                                             </li>
@@ -196,7 +196,7 @@
 
                                         <c:if test="${!pageInfo.hasPreviousPage}">
                                             <li class="disabled">
-                                                <a href="${pageContext.request.contextPath}/search?keyword=${keyword}&page=${pageInfo.prePage}" aria-label="Previous">
+                                                <a href="${pageContext.request.contextPath}/info/favorite?page=${pageInfo.prePage}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                 </a>
                                             </li>

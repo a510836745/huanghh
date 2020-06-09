@@ -10,7 +10,6 @@ public interface OrderService {
 
     public void deleteById(Integer orderid);
 
-
     public List<Order> selectOrderByExample(OrderExample orderExample);
 
     public List<OrderItem> selectHotGoodsList();
@@ -30,4 +29,6 @@ public interface OrderService {
     public Order getOrderNow(Integer userId);
 
     public int requestRefund(Integer orderId,Integer goodsId);
+
+    public int confirmRefund(Integer orderId,Integer goodsId);
 }

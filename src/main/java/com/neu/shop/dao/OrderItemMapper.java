@@ -34,4 +34,6 @@ public interface OrderItemMapper {
     int updateByPrimaryKey(OrderItem record);
 
     int requestRefund(@Param("orderid")Integer orderid, @Param("goodsid")Integer goodsid);
+
+    int confirmRefund(@Param("orderid")Integer orderid, @Param("goodsid")Integer goodsid);
 }

@@ -90,7 +90,7 @@
 
                                 <c:if test="${pageInfo.hasPreviousPage}">
                                     <li>
-                                        <a href="${pageContext.request.contextPath}/search?keyword=${keyword}&page=${pageInfo.prePage}" aria-label="Previous">
+                                        <a href="${pageContext.request.contextPath}/getGoodByCategory?cate=${cate}&page=${pageInfo.prePage}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
@@ -98,7 +98,7 @@
 
                                 <c:if test="${!pageInfo.hasPreviousPage}">
                                     <li class="disabled">
-                                        <a href="${pageContext.request.contextPath}/search?keyword=${keyword}&page=${pageInfo.prePage}" aria-label="Previous">
+                                        <a href="${pageContext.request.contextPath}/getGoodByCategory?cate=${cate}&page=${pageInfo.prePage}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
@@ -106,16 +106,16 @@
 
                                 <c:forEach items="${pageInfo.navigatepageNums}" var="pageNums">
                                     <c:if test="${pageNums == pageInfo.pageNum}">
-                                        <li class="active"><a href="${pageContext.request.contextPath}/search?keyword=${keyword}&page=${pageNums}">${pageNums}</a></li>
+                                        <li class="active"><a href="${pageContext.request.contextPath}/getGoodByCategory?cate=${cate}&page=${pageNums}">${pageNums}</a></li>
                                     </c:if>
                                     <c:if test="${pageNums != pageInfo.pageNum}">
-                                        <li><a href="${pageContext.request.contextPath}/search?keyword=${keyword}&page=${pageNums}">${pageNums}</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/getGoodByCategory?cate=${cate}&page=${pageNums}">${pageNums}</a></li>
                                     </c:if>
                                 </c:forEach>
 
                                 <c:if test="${pageInfo.hasNextPage}">
                                     <li>
-                                        <a href="${pageContext.request.contextPath}/search?keyword=${keyword}&page=${pageInfo.nextPage}" aria-label="Next">
+                                        <a href="${pageContext.request.contextPath}/getGoodByCategory?cate=${cate}&page=${pageInfo.nextPage}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
@@ -123,7 +123,7 @@
 
                                 <c:if test="${!pageInfo.hasNextPage}">
                                     <li class="disabled">
-                                        <a href="${pageContext.request.contextPath}/search?keyword=${keyword}&page=${pageInfo.nextPage}" aria-label="Next">
+                                        <a href="${pageContext.request.contextPath}/getGoodByCategory?cate=${cate}&page=${pageInfo.nextPage}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>

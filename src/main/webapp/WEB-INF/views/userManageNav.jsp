@@ -13,15 +13,7 @@
                 <li><a href="" class="active">所有用户</a></li>
             </ul>
         </nav>
-        <form class="navbar-form navbar-right" role="search" method="get" action="${pageContext.request.contextPath}/js/userManage.js">
-            <div class="form-group">
-                <input type="text" id="userSearch" class="form-control" placeholder="Search" name="keyword">
-            </div>
-            <button type="submit" class="btn btn-default" id="search">
-                <%--                        <span class="glyphicon glyphicon-search" aria-label="搜索"></span>--%>
-                <a>搜索</a>
-            </button>
-        </form>
+
     </div>
 </div>
 
